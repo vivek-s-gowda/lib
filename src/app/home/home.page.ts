@@ -13,9 +13,9 @@ export class HomePage {
   data: User = new User();
   constructor(private linkService: LinkService, private router: Router) {
     // this.linkService.getBookingList();
-    this.linkService.deleteAll();
-    this.saveData();
-    this.retrieveData();
+    // this.linkService.deleteAll();
+    // this.saveData();
+    // this.retrieveData();
   }
 
   checkAndLogin() {
