@@ -1,34 +1,8 @@
 <ion-content>
   <div class="layout">
-    <span class="login-text" (click)="checkAndLogin()"
-      ><div class="display-flex-and-center">
-        <span class="login-inner-text">Login</span
-        ><span class="material-icons"> login </span>
-      </div></span
-    >
-    <div class="text"><span class="colored-g">G</span>et Your Link</div>
-    <span class="search"
-      ><input class="search-box" />
-      <button class="search-button" (click)="createAccount()">
-        <span class="material-icons primary-color"> search </span>
-      </button></span
-    >
-
-    <div class="banners">
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <div>Why Us?</div>
-          <img src="assets/slide1.svg" />
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 3</h1>
-        </ion-slide>
-      </ion-slides>
-    </div>
-
+    <div class="create-account-header">Create Account</div>
+    <input class="input-style" placeholder="Password" />
+    <button class="btn-style"  (click)="checkAndLogin()">Send OTP</button>
     <div class="footer">
       <svg
         width="89"

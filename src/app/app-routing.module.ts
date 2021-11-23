@@ -15,6 +15,22 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'otp',
+    loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
+  },
+  {
+    path: 'create-password',
+    loadChildren: () => import('./create-password/create-password.module').then( m => m.CreatePasswordPageModule)
+  },
+  {
+    path: 'profile-view',
+    loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule)
+  },
+  {
+    path: 'create-account',
+    loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },
 ];
 
 @NgModule({

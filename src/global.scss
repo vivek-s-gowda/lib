@@ -72,3 +72,48 @@ body {
 .material-icons.md-48 {
   font-size: 48px;
 }
+.footer {
+  position: relative;
+  top: 10vh;
+}
+
+.input-style {
+  height: 60px;
+  width: 100%;
+  margin-top: 24px;
+  background: #ffffff;
+  border: 1px solid var(--primary-color);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+
+.btn-style {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 60px;
+  margin-top: 24px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  width: 100%;
+  color:var(--secondary-lite);
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding: 24px;
+  overflow-x: scroll;
+}
+
+.primary-color {
+  color: var(--secondary-lite);
+}

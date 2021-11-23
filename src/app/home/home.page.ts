@@ -22,6 +22,10 @@ export class HomePage {
     this.router.navigate(['/', 'login']);
   }
 
+  createAccount() {
+    this.router.navigate(['/', 'create-account']);
+  }
+
   retrieveData(): void {
     this.linkService
       .getAll()

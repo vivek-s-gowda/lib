@@ -1,32 +1,25 @@
 <ion-content>
   <div class="layout">
-    <span class="login-text" (click)="checkAndLogin()"
-      ><div class="display-flex-and-center">
-        <span class="login-inner-text">Login</span
-        ><span class="material-icons"> login </span>
-      </div></span
-    >
-    <div class="text"><span class="colored-g">G</span>et Your Link</div>
-    <span class="search"
-      ><input class="search-box" />
-      <button class="search-button" (click)="createAccount()">
-        <span class="material-icons primary-color"> search </span>
-      </button></span
-    >
-
-    <div class="banners">
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide>
-          <div>Why Us?</div>
-          <img src="assets/slide1.svg" />
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 3</h1>
-        </ion-slide>
-      </ion-slides>
+    <div class="share-icon-area">
+      <span class="material-icons"> share </span>
+    </div>
+    <div class="profile-picture">
+      <span class="material-icons primary-color md-36"> account_circle </span>
+    </div>
+    <div class="profile-name">Vivek S Gowda</div>
+    <div class="bio-lines">Live in the sunshine where you belong.</div>
+    <div class="social-icons-area">
+      <span class="material-icons social-icon"> fingerprint </span>
+      <span class="material-icons social-icon"> favorite </span>
+      <span class="material-icons social-icon"> credit_card </span>
+      <span class="material-icons social-icon"> account_balance </span>
+      <span class="material-icons social-icon"> thumb_up </span>
+    </div>
+    <div class="links-area">
+      <button class="btn-style"></button>
+      <button class="btn-style"></button>
+      <button class="btn-style"></button>
+      <button class="btn-style"></button>
     </div>
 
     <div class="footer">
