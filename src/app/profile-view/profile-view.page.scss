@@ -7,7 +7,7 @@
 .profile-picture {
   width: 90px;
   height: 90px;
-  left: 162px;
+  padding: 25px;
   margin-top: 48px;
   border-radius: 50%;
   background: var(--primary-color);
@@ -39,7 +39,8 @@
 .social-icons-area{
     width: 70%;
     margin-top: 24px;
-    padding-top:8px 24px 8px 0px;
+    padding:8px 24px 8px 0px;
+    text-align: center;
 }
 
 .social-icon
