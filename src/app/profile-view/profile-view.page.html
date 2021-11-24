@@ -1,14 +1,26 @@
 <ion-content>
   <div class="layout">
     <div class="share-icon-area">
-      <span class="material-icons"> share </span>
+      <span class="material-icons" (click)="editProfile()"> edit </span>
+      <span class="material-icons" *ngIf="!editView"> share </span>
+      <span class="material-icons" *ngIf="editView"> settings </span>
     </div>
     <div class="profile-picture">
       <span class="material-icons primary-color md-36"> account_circle </span>
     </div>
     <div class="profile-name">Vivek S Gowda</div>
     <div class="bio-lines">Live in the sunshine where you belong.</div>
-    <div class="social-icons-area">
+    <div *ngIf="editView" class="icons-add-position">
+      <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
+        <span class="material-icons social-icon"> fingerprint </span>
+        <span class="material-icons social-icon"> favorite </span>
+        <span class="material-icons social-icon"> credit_card </span>
+        <span class="material-icons social-icon"> account_balance </span>
+        <span class="material-icons social-icon"> thumb_up </span>
+      </div>
+      <span class="material-icons social-icon"> add </span>
+    </div>
+    <div *ngIf="!editView" [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
       <span class="material-icons social-icon"> fingerprint </span>
       <span class="material-icons social-icon"> favorite </span>
       <span class="material-icons social-icon"> credit_card </span>
@@ -16,6 +28,8 @@
       <span class="material-icons social-icon"> thumb_up </span>
     </div>
     <div class="links-area">
+      
+      <button class="btn-style" *ngIf="editView">Add new link +</button>
       <button class="btn-style"></button>
       <button class="btn-style"></button>
       <button class="btn-style"></button>

@@ -9,7 +9,12 @@ export class ProfileViewPage implements OnInit {
 
   constructor() { }
 
+  editView:boolean = false;
   ngOnInit() {
   }
 
+  editProfile()
+  {
+    this.editView = !this.editView;
+  }
 }
