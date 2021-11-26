@@ -1,8 +1,14 @@
 <ion-content>
   <div class="layout">
     <div class="otp-header">Enter OTP</div>
-    <input type="text" placeholder="Enter OTP" class="input-style" />
-    <button class="btn-style" (click)="createPassword()">Set Password</button>
+    <div class="full-width">
+      <ion-input
+        type="text"
+        placeholder="Enter OTP"
+        class="input-style"
+      ></ion-input>
+      <button class="btn-style" (click)="createPassword()">Set Password</button>
+    </div>
     <div class="footer">
       <svg
         width="89"

@@ -1,8 +1,14 @@
 <ion-content>
   <div class="layout">
     <div class="login-header">Login</div>
-    <input class="phone-number-input" placeholder="Phone Number" type="text" />
-    <button class="send-otp" (click)="checkAndLogin()">Send OTP</button>
+    <div class="full-width">
+      <ion-input
+        class="phone-number-input"
+        placeholder="Phone Number"
+        type="text"
+      ></ion-input>
+      <button class="send-otp" (click)="checkAndLogin()">Send OTP</button>
+    </div>
     <div class="footer">
       <svg
         width="89"

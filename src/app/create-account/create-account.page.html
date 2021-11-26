@@ -1,8 +1,10 @@
 <ion-content>
   <div class="layout">
     <div class="create-account-header">Create Account</div>
-    <input class="input-style" placeholder="Password" />
-    <button class="btn-style"  (click)="checkAndLogin()">Send OTP</button>
+    <div class="full-width">
+      <ion-input class="input-style" placeholder="Password"></ion-input>
+      <button class="btn-style" (click)="checkAndLogin()">Send OTP</button>
+    </div>
     <div class="footer">
       <svg
         width="89"

@@ -87,10 +87,9 @@ body {
   border-radius: 10px;
 }
 
-
 .btn-style {
   background: var(--primary-color);
-  border: 1px solid var(--primary-color);;
+  border: 1px solid var(--primary-color);
   box-sizing: border-box;
   border-radius: 10px;
   height: 60px;
@@ -101,7 +100,7 @@ body {
   font-size: 32px;
   line-height: 38px;
   width: 100%;
-  color:var(--secondary-lite);
+  color: var(--secondary-lite);
 }
 
 .layout {
@@ -116,4 +115,13 @@ body {
 
 .primary-color {
   color: var(--secondary-lite);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.display-flex-center {
+  display: flex;
+  align-items: center;
 }

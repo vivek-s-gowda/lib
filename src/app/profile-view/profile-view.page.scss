@@ -69,3 +69,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.image-size {
+  height: 50px;
+  width: 50px;
+  border: 1px solid var(--secondary-lite);
+}
+
+.link{
+  margin-left: 8px;
+  font-size: 16pt;
+}
