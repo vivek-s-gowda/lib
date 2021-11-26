@@ -125,3 +125,16 @@ body {
   display: flex;
   align-items: center;
 }
+
+// .newLinkModal {
+//   height: 200px;
+//   position: absolute;
+//   bottom: 0;
+// }
+
+.newLinkModal{
+  margin-bottom: 100px;
+}
+.newLinkModal .modal-wrapper {
+  bottom: 0% !important;
+}
