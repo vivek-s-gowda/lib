@@ -6,21 +6,28 @@
       <span class="material-icons" *ngIf="editView"> settings </span>
     </div>
     <div>
-      <div class="profile-picture">
+      <div class="profile-picture" *ngIf="editView">
         <span class="material-icons primary-color md-36"> account_circle </span>
       </div>
+      <ion-avatar *ngIf="!editView" class="profile-picture-size" slot="start">
+        <img
+          src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
+        />
+      </ion-avatar>
     </div>
     <div class="profile-name">Vivek S Gowda</div>
     <div class="bio-lines">Live in the sunshine where you belong.</div>
-    <div *ngIf="editView" class="icons-add-position">
-      <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
-        <span class="material-icons social-icon"> fingerprint </span>
-        <span class="material-icons social-icon"> favorite </span>
-        <span class="material-icons social-icon"> credit_card </span>
-        <span class="material-icons social-icon"> account_balance </span>
-        <span class="material-icons social-icon"> thumb_up </span>
+    <div>
+      <div *ngIf="editView" class="icons-add-position">
+        <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
+          <span class="material-icons social-icon"> fingerprint </span>
+          <span class="material-icons social-icon"> favorite </span>
+          <span class="material-icons social-icon"> credit_card </span>
+          <span class="material-icons social-icon"> account_balance </span>
+          <span class="material-icons social-icon"> thumb_up </span>
+        </div>
+        <span class="material-icons social-icon"> add </span>
       </div>
-      <span class="material-icons social-icon"> add </span>
     </div>
     <div
       *ngIf="!editView"
@@ -41,7 +48,7 @@
               src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
             />
           </ion-avatar>
-        <span class="link">My Gmail</span>
+          <span class="link">My Gmail</span>
         </span>
       </button>
 
@@ -52,7 +59,7 @@
               src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
             />
           </ion-avatar>
-        <span class="link">My Gmail</span>
+          <span class="link">My Gmail</span>
         </span>
       </button>
 
@@ -63,7 +70,7 @@
               src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
             />
           </ion-avatar>
-        <span class="link">My Gmail</span>
+          <span class="link">My Gmail</span>
         </span>
       </button>
 
@@ -74,7 +81,7 @@
               src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
             />
           </ion-avatar>
-        <span class="link">My Gmail</span>
+          <span class="link">My Gmail</span>
         </span>
       </button>
     </div>
