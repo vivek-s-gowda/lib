@@ -7,13 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   checkAndLogin() {
-    this.router.navigate(['/', 'login']);
+    this.router.navigate(['/', 'app', 'login']);
   }
 }

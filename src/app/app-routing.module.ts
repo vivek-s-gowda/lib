@@ -12,24 +12,28 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
+    path: 'app/login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'otp',
+    path: 'app/otp',
     loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
   },
   {
-    path: 'create-password',
+    path: 'app/create-password',
     loadChildren: () => import('./create-password/create-password.module').then( m => m.CreatePasswordPageModule)
   },
   {
-    path: 'profile-view',
+    path: ':user',
     loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule)
   },
   {
-    path: 'create-account',
+    path: 'app/create-account',
     loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },
+  {
+    path: 'app/add-link-modal',
+    loadChildren: () => import('./add-link-modal/add-link-modal.module').then( m => m.AddLinkModalPageModule)
   },
 ];
 

@@ -7,14 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   checkAndLogin() {
-    this.router.navigate(['/', 'otp']);
+    this.router.navigate(['/', 'app', 'otp']);
   }
-
 }

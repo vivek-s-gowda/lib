@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddNewLinkComponent } from './add-new-link.component';
+import { AddLinkModalPage } from './add-link-modal.page';
 
-describe('AddNewLinkComponent', () => {
-  let component: AddNewLinkComponent;
-  let fixture: ComponentFixture<AddNewLinkComponent>;
+describe('AddLinkModalPage', () => {
+  let component: AddLinkModalPage;
+  let fixture: ComponentFixture<AddLinkModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddNewLinkComponent ],
+      declarations: [ AddLinkModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddNewLinkComponent);
+    fixture = TestBed.createComponent(AddLinkModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

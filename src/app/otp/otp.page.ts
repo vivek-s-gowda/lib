@@ -7,13 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./otp.page.scss'],
 })
 export class OtpPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   createPassword() {
-    this.router.navigate(['/', 'create-password']);
+    this.router.navigate(['/', 'app', 'create-password']);
   }
 }

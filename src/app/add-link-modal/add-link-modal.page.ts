@@ -9,11 +9,11 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-new-link',
-  templateUrl: './add-new-link.component.html',
-  styleUrls: ['./add-new-link.component.scss'],
+  selector: 'app-add-link-modal',
+  templateUrl: './add-link-modal.page.html',
+  styleUrls: ['./add-link-modal.page.scss'],
 })
-export class AddNewLinkComponent implements OnInit {
+export class AddLinkModalPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private fb: FormBuilder
@@ -21,19 +21,22 @@ export class AddNewLinkComponent implements OnInit {
 
   linkForm: FormGroup;
 
-  ngOnInit() {}
-
-  ionViewWillEnter() {
+  ngOnInit() {
     this.linkForm = this.fb.group({
-      imageUrl:['', Validators.required],
+      imageUrl: [
+        'https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46',
+      ],
       linkUrl: ['', Validators.required],
       linkName: ['', Validators.required],
     });
   }
 
+  ionViewWillEnter() {}
+
   addNewLink() {
     this.modalController.dismiss({
       dismissed: true,
+      newLink: this.linkForm.value,
     });
   }
 }

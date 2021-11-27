@@ -19,11 +19,11 @@ export class HomePage {
   }
 
   checkAndLogin() {
-    this.router.navigate(['/', 'login']);
+    this.router.navigate(['/', 'app', 'login']);
   }
 
   createAccount() {
-    this.router.navigate(['/', 'create-account']);
+    this.router.navigate(['/', 'app', 'create-account']);
   }
 
   retrieveData(): void {

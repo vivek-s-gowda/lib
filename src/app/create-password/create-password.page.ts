@@ -7,13 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-password.page.scss'],
 })
 export class CreatePasswordPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   enterIntoProfile() {
-    this.router.navigate(['/', 'profile-view']);
+    this.router.navigate(['/', 'viveksgowda']);
   }
 }

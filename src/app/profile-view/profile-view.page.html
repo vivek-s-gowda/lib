@@ -40,8 +40,8 @@
       <span class="material-icons social-icon"> thumb_up </span>
     </div>
     <div class="links-area">
-      <button class="btn-style" (click)="addNewLink()">Add new link +</button>
-      <button *ngFor="let link of links" class="btn-style">
+      <button class="btn-style" (click)="addNewLink()"><h2>Add new link +</h2></button>
+      <button *ngFor="let link of links" class="btn-style" (click)="openLink(link.linkUrl)">
         <span class="display-flex-center">
           <ion-avatar class="image-size" slot="start">
             <img
