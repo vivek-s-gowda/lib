@@ -12,6 +12,8 @@ export class CreateAccountPage implements OnInit {
   ngOnInit() {}
 
   checkAndLogin() {
-    this.router.navigate(['/', 'app', 'login']);
+    this.router.navigate(['/', 'app', 'otp'],{
+      queryParams: { from: 'create' }
+    });
   }
 }

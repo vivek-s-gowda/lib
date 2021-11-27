@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -7,11 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./otp.page.scss'],
 })
 export class OtpPage implements OnInit {
-  constructor(private router: Router) {}
+  from:string;
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      this.from = params.from;
+    });
+  }
 
   ngOnInit() {}
 
   createPassword() {
-    this.router.navigate(['/', 'app', 'create-password']);
+    if(this.from == 'create')
+      this.router.navigate(['/', 'app', 'create-password']);
+    else
+      this.router.navigate(['/', 'viveksgowda']);
   }
 }

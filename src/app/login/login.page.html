@@ -5,10 +5,13 @@
       <ion-input
         class="phone-number-input"
         placeholder="Phone Number"
+        [(ngModel)]="phoneNumber"
         type="text"
       ></ion-input>
       <button class="send-otp" (click)="checkAndLogin()">Send OTP</button>
     </div>
+    
+    <div id="recaptcha-container"></div>
     <div class="footer">
       <svg
         width="89"

@@ -7,7 +7,7 @@
         placeholder="Enter OTP"
         class="input-style"
       ></ion-input>
-      <button class="btn-style" (click)="createPassword()">Set Password</button>
+      <button class="btn-style" (click)="createPassword()">{{ from == 'create' ? 'Set Password' : 'Login' }} </button>
     </div>
     <div class="footer">
       <svg
