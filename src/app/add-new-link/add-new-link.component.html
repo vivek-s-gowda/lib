@@ -1,3 +1,22 @@
-<p>
-  add-new-link works!
-</p>
+<ion-content>
+  <div class="layout no-height">
+    <form class="full-width" [formGroup]="linkForm">
+      <div class="header">Add new link</div>
+      <span class="link-image-area">
+        <ion-avatar class="image-size" slot="start">
+          <img
+            src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
+          />
+        </ion-avatar>
+        <span class="general-text-16 default-margin-left"
+          >Choose image for link</span
+        >
+      </span>
+      <div class="full-width">
+        <ion-input class="input-style" placeholder="Link URL"></ion-input>
+        <ion-input class="input-style" placeholder="Link name"></ion-input>
+        <button class="btn-style" (click)="addNewLink()"><h2>Add</h2></button>
+      </div>
+    </form>
+  </div>
+</ion-content>

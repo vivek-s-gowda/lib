@@ -126,15 +126,20 @@ body {
   align-items: center;
 }
 
-// .newLinkModal {
-//   height: 200px;
-//   position: absolute;
-//   bottom: 0;
-// }
-
-.newLinkModal{
-  margin-bottom: 100px;
+.newLinkModal  .modal-wrapper {
+  height: 50%;
+  bottom: 0;
+  position: absolute;
+  display: block;
+  border-radius: 10px 10px 0px 0px;
 }
-.newLinkModal .modal-wrapper {
-  bottom: 0% !important;
+
+.general-text-16 {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+}
+
+.default-margin-left {
+  margin-left:24px;
 }

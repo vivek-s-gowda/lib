@@ -1,0 +1,25 @@
+.no-height {
+  height: auto;
+}
+.header {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 19px;
+  color: var(--secondary-color);
+}
+
+.image-size {
+  align-self: flex-start;
+  height: 50px;
+  width: 50px;
+  border: 1px solid var(--secondary-lite);
+}
+
+.link-image-area {
+    margin-top: 24px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
