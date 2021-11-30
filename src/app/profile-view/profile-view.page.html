@@ -15,7 +15,7 @@
         />
       </ion-avatar>
     </div>
-    <div class="profile-name">Vivek S Gowda</div>
+    <div class="profile-name">{{username}}</div>
     <div class="bio-lines">Live in the sunshine where you belong.</div>
     <div>
       <div *ngIf="editView" class="icons-add-position">
@@ -40,19 +40,38 @@
       <span class="material-icons social-icon"> thumb_up </span>
     </div>
     <div class="links-area">
-      <button class="btn-style" (click)="addNewLink()"><h2>Add new link +</h2></button>
-      <button *ngFor="let link of links" class="btn-style" (click)="openLink(link.linkUrl)">
+      <button class="btn-style" (click)="addNewLink()">
+        <h2>Add new link +</h2>
+      </button>
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4319517819579528"
+        crossorigin="anonymous"
+      ></script>
+      <!-- New ad -->
+      <ins
+        class="adsbygoogle"
+        style="display: block"
+        data-ad-client="ca-pub-4319517819579528"
+        data-ad-slot="3136514868"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <button
+        *ngFor="let link of links"
+        class="btn-style"
+        (click)="openLink(link.linkUrl)"
+      >
         <span class="display-flex-center">
           <ion-avatar class="image-size" slot="start">
-            <img
-              [src]="link.imageUrl"
-            />
+            <img [src]="link.imageUrl" />
           </ion-avatar>
           <span class="link">{{link.linkName}}</span>
         </span>
       </button>
-
-     
     </div>
 
     <div class="footer">

@@ -5,6 +5,7 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import User from '../model/data.model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ import User from '../model/data.model';
 export class LinkService {
   private dbPath = '/users';
   user: AngularFireList<User>;
-  constructor(private fireBase: AngularFireDatabase) {
+  constructor(
+    private fireBase: AngularFireDatabase,
+    private firestore: AngularFirestore
+  ) {
     this.user = fireBase.list(this.dbPath);
   }
 
@@ -24,8 +28,17 @@ export class LinkService {
     return this.user;
   }
 
-  create(data: User): any {
-    return this.user.push(data);
+  create(id: string, data: User): any {
+    return this.user.set(id, data);
+  }
+
+  getUser(id: string) {
+    this.firestore
+      .collection('users')
+      .get()
+      .subscribe((ss) => {
+        console.log(ss)
+      });
   }
 
   update(key: string, value: any): Promise<void> {

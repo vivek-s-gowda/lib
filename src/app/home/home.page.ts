@@ -11,6 +11,7 @@ import User from '../model/data.model';
 })
 export class HomePage {
   data: User = new User();
+  username:string = "";
   constructor(private linkService: LinkService, private router: Router) {
     // this.linkService.getBookingList();
     // this.linkService.deleteAll();
@@ -23,7 +24,7 @@ export class HomePage {
   }
 
   createAccount() {
-    this.router.navigate(['/', 'app', 'create-account']);
+    this.router.navigate(['/', 'app', 'create-account'],{queryParams:{username:this.username}});
   }
 
   retrieveData(): void {
@@ -58,7 +59,7 @@ export class HomePage {
       ],
     };
 
-    this.linkService.create(this.data).then(() => {
+    this.linkService.create('',this.data).then(() => {
       console.log('Created new item successfully!');
     });
   }

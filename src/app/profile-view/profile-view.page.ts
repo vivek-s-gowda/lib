@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { AddLinkModalPage } from '../add-link-modal/add-link-modal.page';
 import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import User from '../model/data.model';
+import { LinkService } from '../services/link.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -13,11 +15,14 @@ export class ProfileViewPage implements OnInit {
   constructor(
     public modalController: ModalController,
     @Inject(DOCUMENT) private document: Document,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private linkService: LinkService
   ) {
-    this.route.params.subscribe((params) => console.log(params));
+    this.route.queryParams.subscribe((params) => {
+      this.username = params.username;
+    });
   }
-
+  username: string = "";
   editView: boolean = false;
   links = [
     {
@@ -27,7 +32,9 @@ export class ProfileViewPage implements OnInit {
       linkName: 'Facebook',
     },
   ];
-  ngOnInit() {}
+  ngOnInit() {
+    this.linkService.getUser('');
+  }
 
   editProfile() {
     this.editView = !this.editView;

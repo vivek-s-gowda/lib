@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -7,13 +7,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
-  constructor(private router: Router) {}
+  username: string = '';
+  phoneNumber: string = '';
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      this.username = params.username;
+    });
+  }
 
   ngOnInit() {}
 
   checkAndLogin() {
-    this.router.navigate(['/', 'app', 'otp'],{
-      queryParams: { from: 'create' }
+    this.router.navigate(['/', 'app', 'otp'], {
+      queryParams: {
+        from: 'create',
+        username: this.username,
+        phoneNumber: this.phoneNumber,
+      },
     });
   }
 }

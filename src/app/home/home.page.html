@@ -8,8 +8,8 @@
     >
     <div class="text"><span class="colored-g">G</span>et Your Link</div>
     <span class="search"
-      ><ion-input class="search-box"></ion-input>
-      <button class="search-button" (click)="createAccount()">
+      ><ion-input class="search-box" [(ngModel)]="username"></ion-input>
+      <button class="search-button" (click)="createAccount()" [disabled]="username == ''">
         <span class="material-icons primary-color"> search </span>
       </button></span
     >
@@ -27,6 +27,24 @@
         </ion-slide>
       </ion-slides>
     </div>
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4319517819579528"
+      crossorigin="anonymous"
+    ></script>
+    <!-- lib ad 2 -->
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      data-ad-client="ca-pub-4319517819579528"
+      data-ad-slot="8120521887"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <div class="footer">
       <svg

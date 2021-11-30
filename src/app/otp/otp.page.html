@@ -6,6 +6,7 @@
         type="text"
         placeholder="Enter OTP"
         class="input-style"
+        [(ngModel)]="otp"
       ></ion-input>
       <button class="btn-style" (click)="createPassword()">{{ from == 'create' ? 'Set Password' : 'Login' }} </button>
     </div>

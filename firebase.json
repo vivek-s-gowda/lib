@@ -4,7 +4,7 @@
     "appAssociation": "AUTO",
     "rewrites": [
       {
-        "source": "/app/**",
+        "source": "/**",
         "dynamicLinks": true
       }
     ],
