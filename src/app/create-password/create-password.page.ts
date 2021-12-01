@@ -43,9 +43,9 @@ export class CreatePasswordPage implements OnInit {
       },
     ];
     this.addUser.theme = 'default';
-    this.linkService.create(this.phoneNumber, this.addUser).then(() => {
+    this.linkService.create(this.username, this.addUser).then(() => {
       console.log('Created new item successfully!');
-      this.router.navigate(['/', 'viveksgowda'], {
+      this.router.navigate(['/', this.username], {
         queryParams: { username: this.username },
       });
     });

@@ -126,7 +126,13 @@ body {
   align-items: center;
 }
 
-.newLinkModal  .modal-wrapper {
+.display-justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newLinkModal .modal-wrapper {
   height: 50%;
   bottom: 0;
   position: absolute;
@@ -141,5 +147,5 @@ body {
 }
 
 .default-margin-left {
-  margin-left:24px;
+  margin-left: 24px;
 }

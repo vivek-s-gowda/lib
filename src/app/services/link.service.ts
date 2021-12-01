@@ -6,22 +6,21 @@ import {
 } from '@angular/fire/compat/database';
 import User from '../model/data.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LinkService {
   private dbPath = '/users';
+  subject$ = new Subject();
   user: AngularFireList<User>;
   constructor(
     private fireBase: AngularFireDatabase,
     private firestore: AngularFirestore
   ) {
     this.user = fireBase.list(this.dbPath);
-  }
-
-  getBookingList() {
-    console.log(this.fireBase.list('users'));
   }
 
   getAll(): AngularFireList<User> {
@@ -33,11 +32,26 @@ export class LinkService {
   }
 
   getUser(id: string) {
-    this.firestore
-      .collection('users')
-      .get()
-      .subscribe((ss) => {
-        console.log(ss)
+    // const db = getDatabase();
+    // const starCountRef = ref(db, 'users/' + id);
+    // onValue(starCountRef, (snapshot) => {
+    //   const user = snapshot.val();
+    //   console.log(user);
+    //   return user;
+    // });
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/${id}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          this.subject$.next(snapshot.val());
+        } else {
+          console.log('No data available');
+          this.subject$.next(null);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        this.subject$.next(null);
       });
   }
 

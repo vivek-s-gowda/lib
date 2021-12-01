@@ -8,11 +8,21 @@
     >
     <div class="text"><span class="colored-g">G</span>et Your Link</div>
     <span class="search"
-      ><ion-input class="search-box" [(ngModel)]="username"></ion-input>
-      <button class="search-button" (click)="createAccount()" [disabled]="username == ''">
+      ><ion-input
+        class="search-box"
+        [(ngModel)]="username"
+        (input)="showUsernameUrl($event)"
+      ></ion-input>
+      <button
+        class="search-button"
+        (click)="createAccount()"
+        [disabled]="username == ''"
+      >
         <span class="material-icons primary-color"> search </span>
       </button></span
     >
+    <span *ngIf="username != ''">{{userLink}}</span>
+    <span *ngIf="usernameNotAvailable"> User name is already taken</span>
     <div class="banners">
       <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>

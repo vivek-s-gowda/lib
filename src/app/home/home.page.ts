@@ -11,56 +11,32 @@ import User from '../model/data.model';
 })
 export class HomePage {
   data: User = new User();
-  username:string = "";
-  constructor(private linkService: LinkService, private router: Router) {
-    // this.linkService.getBookingList();
-    // this.linkService.deleteAll();
-    // this.saveData();
-    // this.retrieveData();
-  }
+  username: string = '';
+  usernameNotAvailable: boolean = false;
+  userLink: string = '';
+  constructor(private linkService: LinkService, private router: Router) {}
 
   checkAndLogin() {
     this.router.navigate(['/', 'app', 'login']);
   }
 
+  showUsernameUrl(event) {
+    if (this.username != '') {
+      this.userLink = 'lincinbio.com/' + event.target.value;
+    }
+  }
+
   createAccount() {
-    this.router.navigate(['/', 'app', 'create-account'],{queryParams:{username:this.username}});
-  }
-
-  retrieveData(): void {
-    this.linkService
-      .getAll()
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      )
-      .subscribe((data) => {
-        // this.tutorials = data;
-        console.log(data);
-      });
-  }
-
-  saveData(): void {
-    this.data = {
-      key: 'sgowdavivek',
-      name: 'Vivek S',
-      bio: 'Check out me below',
-      link: [
-        {
-          img: 'img path',
-          link: 'gggggggg',
-        },
-        {
-          img: 'img path',
-          link: 'gggggggg',
-        },
-      ],
-    };
-
-    this.linkService.create('',this.data).then(() => {
-      console.log('Created new item successfully!');
+    this.linkService.getUser(this.username);
+    this.linkService.subject$.subscribe((res) => {
+      if (res == null) {
+        this.usernameNotAvailable = true;
+        this.router.navigate(['/', 'app', 'create-account'], {
+          queryParams: { username: this.username },
+        });
+      } else {
+        this.usernameNotAvailable = true;
+      }
     });
   }
 }
