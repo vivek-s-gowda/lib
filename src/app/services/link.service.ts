@@ -6,7 +6,7 @@ import {
 } from '@angular/fire/compat/database';
 import User from '../model/data.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { getDatabase, ref, onValue, get, child, set } from 'firebase/database';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -32,13 +32,6 @@ export class LinkService {
   }
 
   getUser(id: string) {
-    // const db = getDatabase();
-    // const starCountRef = ref(db, 'users/' + id);
-    // onValue(starCountRef, (snapshot) => {
-    //   const user = snapshot.val();
-    //   console.log(user);
-    //   return user;
-    // });
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/${id}`))
       .then((snapshot) => {
@@ -55,8 +48,14 @@ export class LinkService {
       });
   }
 
-  update(key: string, value: any): Promise<void> {
-    return this.user.update(key, value);
+  update(key: string, value: User) {
+    // return this.user.update(key, value);
+    const dbRef = ref(getDatabase());
+    set(child(dbRef, `users/${key}`), value)
+      .then(() => {
+        console.log('data saved successfully');
+      })
+      .catch((error) => {});
   }
 
   delete(key: string): Promise<void> {

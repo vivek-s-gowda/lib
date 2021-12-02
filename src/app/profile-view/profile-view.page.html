@@ -1,9 +1,11 @@
 <ion-content>
   <div *ngIf="noUserFound == 'userfound'" class="layout">
     <div class="share-icon-area">
-      <span class="material-icons" (click)="editProfile()"> edit </span>
-      <span class="material-icons" *ngIf="!editView"> share </span>
-      <span class="material-icons" *ngIf="editView"> settings </span>
+      <span class="material-icons"> share </span>
+      <span class="material-icons settings-icon-area" (click)="editProfile()">
+        settings
+      </span>
+      <!-- <span class="material-icons" *ngIf="editView"> settings </span> -->
     </div>
     <div>
       <div class="profile-picture" *ngIf="editView">
@@ -40,7 +42,7 @@
       <span class="material-icons social-icon"> thumb_up </span>
     </div>
     <div class="links-area">
-      <button class="btn-style" (click)="addNewLink()">
+      <button class="btn-style" *ngIf="editView || links.length == 0" (click)="addNewLink()">
         <h2>Add new link +</h2>
       </button>
       <script

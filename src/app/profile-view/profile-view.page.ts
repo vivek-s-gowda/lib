@@ -17,7 +17,7 @@ export class ProfileViewPage implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private route: ActivatedRoute,
     private linkService: LinkService,
-    private router: Router,
+    private router: Router
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params.username;
@@ -30,6 +30,7 @@ export class ProfileViewPage implements OnInit {
   name: string = '';
   bio: string = '';
   dpPath: string = '';
+  updatedUserData: User;
   editView: boolean = false;
   links: any = [];
   userId: string = '';
@@ -39,10 +40,12 @@ export class ProfileViewPage implements OnInit {
     this.linkService.subject$.subscribe((res) => {
       if (res != null) {
         this.noUserFound = 'userfound';
+        this.updatedUserData = res;
         this.links = res['link'];
         this.name = res['name'];
         this.bio = res['bio'];
         this.dpPath = res['dpPath'];
+        console.log(this.updatedUserData, '-------------------------');
       } else {
         this.noUserFound = 'usernotfound';
       }
@@ -61,6 +64,8 @@ export class ProfileViewPage implements OnInit {
     });
     modal.onDidDismiss().then(async (data: any) => {
       this.links.push(data.data.newLink);
+      this.updatedUserData['link'] = this.links;
+      this.linkService.update(this.name, this.updatedUserData);
     });
     return await modal.present();
   }
@@ -69,8 +74,7 @@ export class ProfileViewPage implements OnInit {
     this.document.location.href = link;
   }
 
-  goHome()
-  {
-    this.router.navigate(['/'])
+  goHome() {
+    this.router.navigate(['/']);
   }
 }
