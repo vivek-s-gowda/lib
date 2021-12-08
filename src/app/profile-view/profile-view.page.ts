@@ -5,6 +5,8 @@ import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import User from '../model/data.model';
 import { LinkService } from '../services/link.service';
+import { PopoverController } from '@ionic/angular';
+import { EditPopupPage } from '../edit-popup/edit-popup.page';
 
 @Component({
   selector: 'app-profile-view',
@@ -17,7 +19,8 @@ export class ProfileViewPage implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private route: ActivatedRoute,
     private linkService: LinkService,
-    private router: Router
+    private router: Router,
+    public popoverController: PopoverController
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params.username;
@@ -41,7 +44,7 @@ export class ProfileViewPage implements OnInit {
       if (res != null) {
         this.noUserFound = 'userfound';
         this.updatedUserData = res;
-        this.links = res['link'];
+        this.links = res['link'] != undefined ? res['link'] : [];
         this.name = res['name'];
         this.bio = res['bio'];
         this.dpPath = res['dpPath'];
@@ -53,7 +56,6 @@ export class ProfileViewPage implements OnInit {
   }
 
   editProfile() {
-    this.editView = !this.editView;
   }
 
   async addNewLink() {
@@ -76,5 +78,19 @@ export class ProfileViewPage implements OnInit {
 
   goHome() {
     this.router.navigate(['/']);
+  }
+
+  async editProfilePopup(ev: any) {
+    // this.editView = !this.editView;
+    const popover = await this.popoverController.create({
+      component: EditPopupPage,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }

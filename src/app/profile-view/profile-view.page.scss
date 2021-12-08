@@ -82,6 +82,9 @@
   height: 50px;
   width: 50px;
   border: 1px solid var(--secondary-lite);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link {
@@ -91,4 +94,8 @@
 
 .settings-icon-area {
   margin-left: 24px;
+}
+
+.icon-margin-zero {
+  margin-left: 0;
 }
