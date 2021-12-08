@@ -2,20 +2,20 @@
   <div *ngIf="noUserFound == 'userfound'" class="layout">
     <div class="share-icon-area">
       <span class="material-icons"> share </span>
-      <span class="material-icons settings-icon-area" (click)="editProfile()">
+      <span class="material-icons settings-icon-area" (click)="editProfilePopup($event)">
         settings
       </span>
       <!-- <span class="material-icons" *ngIf="editView"> settings </span> -->
     </div>
     <div>
-      <div class="profile-picture" *ngIf="editView">
+      <div class="profile-picture" *ngIf="!editView">
         <span class="material-icons primary-color md-36"> account_circle </span>
       </div>
-      <ion-avatar *ngIf="!editView" class="profile-picture-size" slot="start">
+      <!-- <ion-avatar *ngIf="editView" class="profile-picture-size" slot="start">
         <img
           src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
         />
-      </ion-avatar>
+      </ion-avatar> -->
     </div>
     <div class="profile-name">{{name}}</div>
     <div class="bio-lines">{{bio}}</div>
@@ -26,7 +26,6 @@
           <span class="material-icons social-icon"> favorite </span>
           <span class="material-icons social-icon"> credit_card </span>
           <span class="material-icons social-icon"> account_balance </span>
-          <span class="material-icons social-icon"> thumb_up </span>
         </div>
         <span class="material-icons social-icon"> add </span>
       </div>
@@ -39,10 +38,13 @@
       <span class="material-icons social-icon"> favorite </span>
       <span class="material-icons social-icon"> credit_card </span>
       <span class="material-icons social-icon"> account_balance </span>
-      <span class="material-icons social-icon"> thumb_up </span>
     </div>
     <div class="links-area">
-      <button class="btn-style" *ngIf="editView || links.length == 0" (click)="addNewLink()">
+      <button
+        class="btn-style"
+        *ngIf="editView || links.length == 0 || links == undefined"
+        (click)="addNewLink()"
+      >
         <h2>Add new link +</h2>
       </button>
       <script
@@ -69,7 +71,8 @@
       >
         <span class="display-flex-center">
           <ion-avatar class="image-size" slot="start">
-            <img [src]="link.imageUrl" />
+            <!-- <img [src]="link.imageUrl" /> -->
+            <span class="material-icons social-icon icon-margin-zero"> link </span>
           </ion-avatar>
           <span class="link">{{link.linkName}}</span>
         </span>

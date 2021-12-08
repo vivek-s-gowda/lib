@@ -22,26 +22,28 @@ export class CreatePasswordPage implements OnInit {
   username: string = '';
   phoneNumber: string = '';
   addUser: User = new User();
+  password: string;
+  confirmPassword: string;
+  passwordMatch: boolean = true;
   ngOnInit() {}
 
   enterIntoProfile() {
     this.createUser();
   }
 
+  getPasswordMatch() {
+    this.passwordMatch = this.password === this.confirmPassword ? false : true;
+  }
+
   createUser() {
+    localStorage.setItem(this.username, 'true');
+    localStorage.setItem('password', this.password);
     this.addUser.key = Math.random().toString();
     this.addUser.name = this.username;
     this.addUser.dpPath = '';
     this.addUser.phoneNumber = this.phoneNumber;
     this.addUser.bio = '';
-    this.addUser.link = [
-      {
-        imageUrl:
-          'https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46',
-        linkUrl: 'https://google.com',
-        linkName: 'Facebook',
-      },
-    ];
+    this.addUser.link = [];
     this.addUser.theme = 'default';
     this.linkService.create(this.username, this.addUser).then(() => {
       console.log('Created new item successfully!');

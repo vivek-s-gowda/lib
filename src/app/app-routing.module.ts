@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'app/add-link-modal',
     loadChildren: () => import('./add-link-modal/add-link-modal.module').then( m => m.AddLinkModalPageModule)
   },
+  {
+    path: 'edit-popup',
+    loadChildren: () => import('./edit-popup/edit-popup.module').then( m => m.EditPopupPageModule)
+  },
 ];
 
 @NgModule({
