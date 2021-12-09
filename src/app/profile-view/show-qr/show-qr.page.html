@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Your QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="layout no-height">
+    <qr-code
+      value="{{url}}"
+      size="300"
+      errorCorrectionLevel="Q"
+      centerImageSrc="./assets/icon/favicon.png"
+      centerImageSize="50"
+      margin="4"
+    >
+    </qr-code>
+  </div>
+</ion-content>

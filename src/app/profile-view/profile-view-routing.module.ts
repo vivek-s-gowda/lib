@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileViewPage
+  },
+  {
+    path: 'show-qr',
+    loadChildren: () => import('./show-qr/show-qr.module').then( m => m.ShowQrPageModule)
   }
 ];
 

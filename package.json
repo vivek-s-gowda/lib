@@ -28,6 +28,7 @@
     "@ionic/angular": "^5.5.2",
     "firebase": "^9.3.0",
     "hammerjs": "^2.0.8",
+    "ng-qrcode": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

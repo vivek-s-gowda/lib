@@ -7,6 +7,8 @@ import User from '../model/data.model';
 import { LinkService } from '../services/link.service';
 import { PopoverController } from '@ionic/angular';
 import { EditPopupPage } from '../edit-popup/edit-popup.page';
+import { ValueChangesService } from '../services/value-changes.service';
+import { ShowQrPage } from './show-qr/show-qr.page';
 
 @Component({
   selector: 'app-profile-view',
@@ -20,13 +22,28 @@ export class ProfileViewPage implements OnInit {
     private route: ActivatedRoute,
     private linkService: LinkService,
     private router: Router,
-    public popoverController: PopoverController
+    public popoverController: PopoverController,
+    private valueChangesService: ValueChangesService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params.username;
     });
     this.route.params.subscribe((params) => {
       this.userId = params.user;
+    });
+    this.valueChangesService.menuValueChanges.subscribe((val) => {
+      // if (val == 'ADD_NEW_LINK') {
+      //   this.addNewLink();
+      // }
+      switch (val) {
+        case 'ADD_NEW_LINK': {
+          this.addNewLink();
+          break;
+        }
+        case 'GET_MY_QR': {
+          this.showQr();
+        }
+      }
     });
   }
   username: string = '';
@@ -39,6 +56,10 @@ export class ProfileViewPage implements OnInit {
   userId: string = '';
   noUserFound: string = 'inprogress';
   ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
     this.linkService.getUser(this.userId);
     this.linkService.subject$.subscribe((res) => {
       if (res != null) {
@@ -48,15 +69,23 @@ export class ProfileViewPage implements OnInit {
         this.name = res['name'];
         this.bio = res['bio'];
         this.dpPath = res['dpPath'];
-        console.log(this.updatedUserData, '-------------------------');
       } else {
         this.noUserFound = 'usernotfound';
       }
     });
   }
 
-  editProfile() {
+  async showQr() {
+    const modal = await this.modalController.create({
+      component: ShowQrPage,
+      cssClass: 'newLinkModal',
+      backdropDismiss: true,
+    });
+    modal.onDidDismiss().then(async (data: any) => {});
+    return await modal.present();
   }
+
+  editProfile() {}
 
   async addNewLink() {
     const modal = await this.modalController.create({
@@ -84,6 +113,10 @@ export class ProfileViewPage implements OnInit {
     // this.editView = !this.editView;
     const popover = await this.popoverController.create({
       component: EditPopupPage,
+      componentProps: {
+        name: this.name,
+        data: this.updatedUserData,
+      },
       cssClass: 'my-custom-class',
       event: ev,
       translucent: true,
