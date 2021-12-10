@@ -117,6 +117,10 @@ body {
   color: var(--secondary-lite);
 }
 
+.primary-color-background {
+  background-color: var(--primary-color);
+}
+
 .full-width {
   width: 100%;
 }
@@ -148,4 +152,8 @@ body {
 
 .default-margin-left {
   margin-left: 24px;
+}
+
+.default-margin-8 {
+  margin: 8px;
 }

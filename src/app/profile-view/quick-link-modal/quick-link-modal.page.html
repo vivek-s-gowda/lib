@@ -1,0 +1,33 @@
+<ion-content>
+  <form class="layout no-height" [formGroup]="linkForm">
+    <div class="header">Add a quick link</div>
+    <div class="full-width">
+      <div *ngIf="selectedIcon == ''" class="icons-layout">
+        <span
+          *ngFor="let icon of icons"
+          class="material-icons social-icon default-margin-8"
+          (click)="selectQuickLinkIcon(icon)"
+        >
+          {{icon}}
+        </span>
+      </div>
+      <div *ngIf="selectedIcon != ''" class="icons-layout">
+        <span class="material-icons social-icon default-margin-8">
+          {{selectedIcon}}
+        </span>
+      </div>
+      <ion-input
+        class="input-style"
+        placeholder="Link URL"
+        formControlName="linkUrl"
+      ></ion-input>
+      <button
+        class="btn-style"
+        (click)="addQuicLink()"
+        [disabled]="!linkForm.valid"
+      >
+        <h2>Add</h2>
+      </button>
+    </div>
+  </form>
+</ion-content>

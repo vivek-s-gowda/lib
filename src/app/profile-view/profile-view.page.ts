@@ -9,6 +9,7 @@ import { PopoverController } from '@ionic/angular';
 import { EditPopupPage } from '../edit-popup/edit-popup.page';
 import { ValueChangesService } from '../services/value-changes.service';
 import { ShowQrPage } from './show-qr/show-qr.page';
+import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 
 @Component({
   selector: 'app-profile-view',
@@ -32,9 +33,6 @@ export class ProfileViewPage implements OnInit {
       this.userId = params.user;
     });
     this.valueChangesService.menuValueChanges.subscribe((val) => {
-      // if (val == 'ADD_NEW_LINK') {
-      //   this.addNewLink();
-      // }
       switch (val) {
         case 'ADD_NEW_LINK': {
           this.addNewLink();
@@ -42,6 +40,11 @@ export class ProfileViewPage implements OnInit {
         }
         case 'GET_MY_QR': {
           this.showQr();
+          break;
+        }
+        case 'ADD_QUICK_LINK': {
+          this.addQuickLink();
+          break;
         }
       }
     });
@@ -53,6 +56,7 @@ export class ProfileViewPage implements OnInit {
   updatedUserData: User;
   editView: boolean = false;
   links: any = [];
+  quickLinks: any = [];
   userId: string = '';
   noUserFound: string = 'inprogress';
   ngOnInit() {
@@ -61,13 +65,14 @@ export class ProfileViewPage implements OnInit {
 
   getUser() {
     this.linkService.getUser(this.userId);
-    this.linkService.subject$.subscribe((res) => {
+    this.linkService.subject$.subscribe((res: User) => {
       if (res != null) {
         this.noUserFound = 'userfound';
         this.updatedUserData = res;
         this.links = res['link'] != undefined ? res['link'] : [];
         this.name = res['name'];
         this.bio = res['bio'];
+        this.quickLinks = res['quickLink'] != undefined ? res['quickLink'] : [];
         this.dpPath = res['dpPath'];
       } else {
         this.noUserFound = 'usernotfound';
@@ -85,8 +90,6 @@ export class ProfileViewPage implements OnInit {
     return await modal.present();
   }
 
-  editProfile() {}
-
   async addNewLink() {
     const modal = await this.modalController.create({
       component: AddLinkModalPage,
@@ -96,6 +99,21 @@ export class ProfileViewPage implements OnInit {
     modal.onDidDismiss().then(async (data: any) => {
       this.links.push(data.data.newLink);
       this.updatedUserData['link'] = this.links;
+      this.linkService.update(this.name, this.updatedUserData);
+    });
+    return await modal.present();
+  }
+
+  async addQuickLink() {
+    const modal = await this.modalController.create({
+      component: QuickLinkModalPage,
+      cssClass: 'newLinkModal',
+      backdropDismiss: true,
+    });
+    modal.onDidDismiss().then(async (data: any) => {
+      console.log(data, 'data from the quick link ');
+      this.quickLinks.push(data.data.newLink);
+      this.updatedUserData['quickLink'] = this.quickLinks;
       this.linkService.update(this.name, this.updatedUserData);
     });
     return await modal.present();

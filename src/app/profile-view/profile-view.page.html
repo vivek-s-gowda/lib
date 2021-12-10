@@ -2,7 +2,10 @@
   <div *ngIf="noUserFound == 'userfound'" class="layout">
     <div class="share-icon-area">
       <span class="material-icons"> share </span>
-      <span class="material-icons settings-icon-area" (click)="editProfilePopup($event)">
+      <span
+        class="material-icons settings-icon-area"
+        (click)="editProfilePopup($event)"
+      >
         settings
       </span>
       <!-- <span class="material-icons" *ngIf="editView"> settings </span> -->
@@ -22,10 +25,13 @@
     <div>
       <div *ngIf="editView" class="icons-add-position">
         <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
-          <span class="material-icons social-icon"> fingerprint </span>
-          <span class="material-icons social-icon"> favorite </span>
-          <span class="material-icons social-icon"> credit_card </span>
-          <span class="material-icons social-icon"> account_balance </span>
+          <span
+            *ngFor="let quikLink of quickLinks"
+            class="material-icons social-icon"
+            (click)="openLink(quikLink.linkUrl)"
+          >
+            {{quikLink.icon}}
+          </span>
         </div>
         <span class="material-icons social-icon"> add </span>
       </div>
@@ -34,10 +40,13 @@
       *ngIf="!editView"
       [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'"
     >
-      <span class="material-icons social-icon"> fingerprint </span>
-      <span class="material-icons social-icon"> favorite </span>
-      <span class="material-icons social-icon"> credit_card </span>
-      <span class="material-icons social-icon"> account_balance </span>
+      <span
+        class="material-icons social-icon"
+        *ngFor="let quikLink of quickLinks"
+        (click)="openLink(quikLink.linkUrl)"
+      >
+        {{quikLink.icon}}
+      </span>
     </div>
     <div class="links-area">
       <button
@@ -72,12 +81,29 @@
         <span class="display-flex-center">
           <ion-avatar class="image-size" slot="start">
             <!-- <img [src]="link.imageUrl" /> -->
-            <span class="material-icons social-icon icon-margin-zero"> link </span>
+            <span class="material-icons social-icon icon-margin-zero">
+              link
+            </span>
           </ion-avatar>
           <span class="link">{{link.linkName}}</span>
         </span>
       </button>
+
+      <ion-fab cdkDrag vertical="center" horizontal="start" edge slot="start">
+        <ion-fab-button color="#bd4b4b" >
+          <ion-icon name="chatbubble-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="end">
+          <!-- <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button> -->
+          <div class="message-blue">
+            <!-- <p class="message-content">This is an awesome message!</p> -->
+            <!-- <div class="message-timestamp-left">SMS 13:37</div> -->
+        </div>
+        </ion-fab-list>
+      </ion-fab>
     </div>
+
+
 
     <div class="footer">
       <svg
