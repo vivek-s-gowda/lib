@@ -10,6 +10,7 @@ import { EditPopupPage } from '../edit-popup/edit-popup.page';
 import { ValueChangesService } from '../services/value-changes.service';
 import { ShowQrPage } from './show-qr/show-qr.page';
 import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile-view',
@@ -24,8 +25,10 @@ export class ProfileViewPage implements OnInit {
     private linkService: LinkService,
     private router: Router,
     public popoverController: PopoverController,
-    private valueChangesService: ValueChangesService
+    private valueChangesService: ValueChangesService,
+    public toastController: ToastController
   ) {
+    this.shareMyLink = window.location.href;
     this.route.queryParams.subscribe((params) => {
       this.username = params.username;
     });
@@ -58,6 +61,7 @@ export class ProfileViewPage implements OnInit {
   links: any = [];
   quickLinks: any = [];
   userId: string = '';
+  shareMyLink: string = '';
   noUserFound: string = 'inprogress';
   ngOnInit() {
     this.getUser();
@@ -143,5 +147,13 @@ export class ProfileViewPage implements OnInit {
 
     const { role } = await popover.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+  async linkCopied() {
+    const toast = await this.toastController.create({
+      message: 'Link copied to clipboard.',
+      duration: 2000,
+    });
+    toast.present();
   }
 }

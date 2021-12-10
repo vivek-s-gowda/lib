@@ -4,12 +4,19 @@
     <div class="full-width">
       <div *ngIf="selectedIcon == ''" class="icons-layout">
         <span
-          *ngFor="let icon of icons"
+          *ngFor="let icon of iconsLoaded"
           class="material-icons social-icon default-margin-8"
           (click)="selectQuickLinkIcon(icon)"
         >
           {{icon}}
         </span>
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more icons..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </div>
       <div *ngIf="selectedIcon != ''" class="icons-layout">
         <span class="material-icons social-icon default-margin-8">

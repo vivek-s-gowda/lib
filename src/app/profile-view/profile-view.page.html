@@ -1,7 +1,13 @@
 <ion-content>
   <div *ngIf="noUserFound == 'userfound'" class="layout">
     <div class="share-icon-area">
-      <span class="material-icons"> share </span>
+      <span
+        class="material-icons"
+        [cdkCopyToClipboard]="shareMyLink"
+        (click)="linkCopied()"
+      >
+        share
+      </span>
       <span
         class="material-icons settings-icon-area"
         (click)="editProfilePopup($event)"
@@ -90,7 +96,7 @@
       </button>
 
       <ion-fab cdkDrag vertical="center" horizontal="start" edge slot="start">
-        <ion-fab-button color="#bd4b4b" >
+        <ion-fab-button color="#bd4b4b">
           <ion-icon name="chatbubble-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="end">
@@ -98,12 +104,10 @@
           <div class="message-blue">
             <!-- <p class="message-content">This is an awesome message!</p> -->
             <!-- <div class="message-timestamp-left">SMS 13:37</div> -->
-        </div>
+          </div>
         </ion-fab-list>
       </ion-fab>
     </div>
-
-
 
     <div class="footer">
       <svg

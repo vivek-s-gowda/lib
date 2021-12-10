@@ -18,8 +18,11 @@ export class QuickLinkModalPage implements OnInit {
   linkForm: FormGroup;
   selectedIcon = '';
   icons = [];
+  iconsLoaded = [];
+  loadCounter: number = 0;
   ngOnInit() {
     this.icons = this.iconService.getIconsList();
+    this.iconsLoaded = [...this.icons[this.loadCounter]];
     this.linkForm = this.fb.group({
       icon: ['', Validators.required],
       linkUrl: ['', Validators.required],
@@ -36,5 +39,21 @@ export class QuickLinkModalPage implements OnInit {
       dismissed: true,
       newLink: this.linkForm.value,
     });
+  }
+
+  loadData(ev) {
+    console.log('Loading::::', ev);
+    setTimeout(() => {
+      console.log('Done');
+      ev.target.complete();
+
+      this.loadCounter++;
+      this.iconsLoaded = [...this.iconsLoaded, ...this.icons[this.loadCounter]];
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      // if (data.length == 1000) {
+      //   ev.target.disabled = true;
+      // }
+    }, 500);
   }
 }
