@@ -7,4 +7,6 @@ export default class User {
   link?: any[];
   quickLink?: any[];
   theme?: string;
+  fontFamily?: string;
+  messages?: any[]
 }

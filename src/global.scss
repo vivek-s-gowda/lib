@@ -157,3 +157,7 @@ body {
 .default-margin-8 {
   margin: 8px;
 }
+
+.my-custom-alert .alert-wrapper {
+  min-width: 90% !important;
+}

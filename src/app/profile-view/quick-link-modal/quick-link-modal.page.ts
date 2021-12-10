@@ -42,11 +42,8 @@ export class QuickLinkModalPage implements OnInit {
   }
 
   loadData(ev) {
-    console.log('Loading::::', ev);
     setTimeout(() => {
-      console.log('Done');
       ev.target.complete();
-
       this.loadCounter++;
       this.iconsLoaded = [...this.iconsLoaded, ...this.icons[this.loadCounter]];
       // App logic to determine if all data is loaded

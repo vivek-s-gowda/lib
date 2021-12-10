@@ -49,6 +49,14 @@ export class ProfileViewPage implements OnInit {
           this.addQuickLink();
           break;
         }
+        case 'UPDATED_BIO': {
+          this.getUser();
+          break;
+        }
+        case 'UPDATE_PROFILE': {
+          this.getUser();
+          break;
+        }
       }
     });
   }

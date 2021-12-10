@@ -1,9 +1,17 @@
 <ion-list>
   <!-- <ion-item>Update Profile</ion-item> -->
   <ion-item button (click)="addBio()">Update bio</ion-item>
-  <ion-item button (click)="setMenuValues('UPDATE_PROFILE')"
-    >Update profile pic</ion-item
-  >
+  <ion-item button type="file">
+    <label for="file-upload" class="custom-file-upload"
+      >Update profile picture
+    </label>
+    <input
+      id="file-upload"
+      type="file"
+      (change)="uploadPhoto($event)"
+      accept=".png,.jpg"
+  /></ion-item>
+
   <ion-item button (click)="setMenuValues('ADD_NEW_LINK')"
     >Add new link</ion-item
   >
