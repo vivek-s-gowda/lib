@@ -15,6 +15,7 @@ export class EditPopupPage implements OnInit {
   bio: string = '';
   @Input() data: any;
   @Input() name: string;
+
   barStatus = false;
   imageUploads = [];
   constructor(
@@ -82,6 +83,9 @@ export class EditPopupPage implements OnInit {
       componentProps: { imageChangedEvent: event },
     });
     modal.onDidDismiss().then(async (data: any) => {
+      if(this.data['dpPath'] != '') {
+        this.firebaseUploadService.deleteFile(this.data['dpPath']);
+      }
       this.firebaseUploadService.storeImage(data.data.croppedImage).then(
         (res: any) => {
           if (res) {

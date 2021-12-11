@@ -34,4 +34,13 @@ export class FirebaseUploadService {
       });
     } catch (e) {}
   }
+
+  deleteFile(url: string) {
+    this.angularFireStorage.storage
+      .refFromURL(url)
+      .delete()
+      .then((res) => {
+        console.log(res);
+      });
+  }
 }

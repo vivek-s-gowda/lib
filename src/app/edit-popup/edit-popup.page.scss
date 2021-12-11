@@ -2,6 +2,7 @@ input[type="file"] {
   display: none;
 }
 .custom-file-upload {
-  display: inline-block;
+  display: flex;
   cursor: pointer;
+  align-items: center;
 }

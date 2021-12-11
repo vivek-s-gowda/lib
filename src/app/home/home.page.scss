@@ -87,8 +87,19 @@ ion-slide {
   color: #fff;
 }
 
-
 .display-flex-and-center {
   display: flex;
   align-items: center;
+}
+
+.display-flex-and-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.link-sample {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+  margin-top: 8px;
 }

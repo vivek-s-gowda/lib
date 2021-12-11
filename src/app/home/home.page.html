@@ -21,19 +21,22 @@
         <span class="material-icons primary-color"> search </span>
       </button></span
     >
-    <span *ngIf="username != ''">{{userLink}}</span>
-    <span *ngIf="usernameNotAvailable"> User name is already taken</span>
+    <span class="link-sample" *ngIf="username != ''">{{userLink}}</span>
+    <span class="link-sample" *ngIf="usernameNotAvailable">
+      User name is already taken</span
+    >
     <div class="banners">
       <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
-          <div>Why Us?</div>
-          <img src="assets/slide1.svg" />
+          <div class="display-flex-and-justify-center">
+            <div>Use as your personal website</div>
+          </div>
         </ion-slide>
         <ion-slide>
-          <h1>Slide 2</h1>
+          <div>One stop for all your links</div>
         </ion-slide>
         <ion-slide>
-          <h1>Slide 3</h1>
+          <div>One stop for all your links</div>
         </ion-slide>
       </ion-slides>
     </div>
