@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EditPopupPage
+  },
+  {
+    path: 'image-crop',
+    loadChildren: () => import('./image-crop/image-crop.module').then( m => m.ImageCropPageModule)
   }
 ];
 
