@@ -57,6 +57,16 @@ export class ProfileViewPage implements OnInit {
           this.getUser();
           break;
         }
+        case 'REMOVE': {
+          this.removeLinks = true;
+          break;
+        }
+        case 'LOGOUT': {
+          localStorage.removeItem('isLinkInBioLoggedIn');
+          this.showSettings =
+            localStorage.getItem('isLinkInBioLoggedIn') == 'yes' ? true : false;
+          break;
+        }
       }
     });
   }
@@ -71,11 +81,15 @@ export class ProfileViewPage implements OnInit {
   userId: string = '';
   shareMyLink: string = '';
   noUserFound: string = 'inprogress';
+  removeLinks: boolean = false;
+  showSettings: boolean = false;
   ngOnInit() {
     this.getUser();
   }
 
   getUser() {
+    this.showSettings =
+      localStorage.getItem('isLinkInBioLoggedIn') == 'yes' ? true : false;
     this.linkService.getUser(this.userId);
     this.linkService.subject$.subscribe((res: User) => {
       if (res != null) {

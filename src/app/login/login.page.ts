@@ -4,6 +4,9 @@ import { getAuth } from 'firebase/auth';
 import firebase from '@firebase/app-compat';
 import 'firebase/auth';
 import { environment } from 'src/environments/environment';
+import { LinkService } from '../services/link.service';
+import User from '../model/data.model';
+import { Subscription } from 'rxjs';
 firebase.initializeApp(environment.firebaseConfig);
 
 @Component({
@@ -16,9 +19,12 @@ export class LoginPage implements OnInit {
   otpSent: boolean = false;
   reCaptchaVerifier;
   otpConfirmation: firebase.default.auth.ConfirmationResult;
-  phoneNumber: string = '';
+  username: string = '';
+  noUserFound: string = '';
+  userPhonenumber: string = '';
+  getLoginInfo: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private linkService: LinkService) {}
 
   ngOnInit() {}
 
@@ -35,17 +41,36 @@ export class LoginPage implements OnInit {
   }
 
   checkAndLogin() {
-    firebase
-      .auth()
-      .signInWithPhoneNumber('+91' + this.phoneNumber, this.reCaptchaVerifier)
-      .then((data) => {
-        console.log(data);
+    this.linkService.getUser(this.username);
+    this.getLoginInfo = this.linkService.subject$.subscribe((res: User) => {
+      if (res != null) {
+        this.userPhonenumber = res['phoneNumber'];
         this.router.navigate(['/', 'app', 'otp'], {
-          queryParams: { from: 'login' },
+          queryParams: {
+            from: 'login',
+            phoneNumber: this.userPhonenumber,
+            username: this.username,
+          },
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } else {
+        this.noUserFound = 'usernotfound';
+      }
+    });
+    //   firebase
+    //     .auth()
+    //     .signInWithPhoneNumber('+91' + this.phoneNumber, this.reCaptchaVerifier)
+    //     .then((data) => {
+    //       console.log(data);
+    //       this.router.navigate(['/', 'app', 'otp'], {
+    //         queryParams: { from: 'login' },
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+  }
+
+  ionViewDidLeave() {
+    if (this.getLoginInfo != undefined) this.getLoginInfo.unsubscribe();
   }
 }

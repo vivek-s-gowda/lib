@@ -33,7 +33,12 @@
   <ion-item button (click)="setMenuValues('ANALYTICS')"
     >Analytics <sup><b>Premium</b></sup>
   </ion-item>
-  <ion-item lines="none" detail="false" button (click)="dismiss()"
-    >Close</ion-item
-  >
+  <ion-item button (click)="setMenuValues('REMOVE')">Remove Links </ion-item>
+  <ion-item
+    lines="none"
+    detail="false"
+    button
+    (click)="setMenuValues('LOGOUT');dismiss()"
+    >Logout
+  </ion-item>
 </ion-list>

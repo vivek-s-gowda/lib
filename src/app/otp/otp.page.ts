@@ -32,10 +32,19 @@ export class OtpPage implements OnInit {
     //   // User couldn't sign in (bad verification code?)
     //   // ...
     // });
-    if (this.from == 'create')
+    if (this.from == 'create') {
       this.router.navigate(['/', 'app', 'create-password'], {
         queryParams: { username: this.username, phoneNumber: this.phoneNumber },
       });
-    else this.router.navigate(['/', 'viveksgowda']);
+    } else if (this.from == 'login') {
+      localStorage.setItem("isLinkInBioLoggedIn","yes")
+      this.router.navigate(['/', 'vivek'], {
+        queryParams: { username: this.username },
+      });
+    }
+  }
+
+  ionViewDidLeave(){
+    
   }
 }
