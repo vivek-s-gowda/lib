@@ -169,3 +169,27 @@ body {
 .swiper-pagination-bullet-active {
   background: var(--primary-color);
 }
+
+.company {
+  text-align: center;
+}
+
+.link-sample-success {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+  margin-top: 8px;
+  align-self: flex-start;
+  color: green;
+  opacity: 0.7;
+}
+
+.link-sample-fail {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+  margin-top: 8px;
+  align-self: flex-start;
+  color: red;
+  opacity: 0.7;
+}

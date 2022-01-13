@@ -21,16 +21,18 @@
         <span class="material-icons primary-color"> search </span>
       </button></span
     >
-    <span class="link-sample" *ngIf="username != ''">{{userLink}}</span>
-    <span class="link-sample" *ngIf="usernameNotAvailable">
+    <span
+      class="link-sample-success"
+      *ngIf="username != '' && !usernameNotAvailable"
+      >{{userLink}}</span
+    >
+    <span class="link-sample-fail" *ngIf="usernameNotAvailable">
       User name is already taken</span
     >
     <div class="banners">
       <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
-          <div class="display-flex-and-justify-center">
-            <div>Use as your personal website</div>
-          </div>
+          <div>Use as your personal website</div>
         </ion-slide>
         <ion-slide>
           <div>One stop for all your links</div>
@@ -94,4 +96,6 @@
       </svg>
     </div>
   </div>
+
+  <p class="company">Copyright (c) Pināka</p>
 </ion-content>

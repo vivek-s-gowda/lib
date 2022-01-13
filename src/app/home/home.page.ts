@@ -23,6 +23,7 @@ export class HomePage {
   showUsernameUrl(event) {
     if (this.username != '') {
       this.userLink = 'lincinbio.com/' + event.target.value;
+      this.usernameNotAvailable = false;
     }
   }
 
@@ -30,7 +31,7 @@ export class HomePage {
     this.linkService.getUser(this.username);
     this.linkService.subject$.subscribe((res) => {
       if (res == null) {
-        this.usernameNotAvailable = true;
+        this.usernameNotAvailable = false;
         this.router.navigate(['/', 'app', 'create-account'], {
           queryParams: { username: this.username },
         });

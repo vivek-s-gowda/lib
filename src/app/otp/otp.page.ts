@@ -54,11 +54,15 @@ export class OtpPage implements OnInit {
         .then((result) => {
           console.log(result);
           if (this.from == 'create') {
-            this.router.navigate(['/', 'app', 'create-password'], {
-              queryParams: {
-                username: this.username,
-                phoneNumber: this.phoneNumber,
-              },
+            // this.router.navigate(['/', 'app', 'create-password'], {
+            //   queryParams: {
+            //     username: this.username,
+            //     phoneNumber: this.phoneNumber,
+            //   },
+            // });
+            localStorage.setItem('isLinkInBioLoggedIn', 'yes');
+            this.router.navigate(['/', this.username], {
+              queryParams: { username: this.username },
             });
           } else if (this.from == 'login') {
             localStorage.setItem('isLinkInBioLoggedIn', 'yes');
