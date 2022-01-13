@@ -8,10 +8,10 @@
         [(ngModel)]="username"
         type="text"
       ></ion-input>
+      <p *ngIf="noUserFound == 'usernotfound'">No Username found</p>
       <button class="send-otp" (click)="checkAndLogin()">Send OTP</button>
     </div>
-    
-    <div id="recaptcha-container"></div>
+
     <div class="footer">
       <svg
         width="89"

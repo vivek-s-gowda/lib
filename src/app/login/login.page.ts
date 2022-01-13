@@ -28,18 +28,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  ionViewDidEnter() {
-    this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'recaptcha-container'
-    );
-  }
-
-  ionViewDidLoad() {
-    this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'recaptcha-container'
-    );
-  }
-
   checkAndLogin() {
     this.linkService.getUser(this.username);
     this.getLoginInfo = this.linkService.subject$.subscribe((res: User) => {
@@ -56,18 +44,6 @@ export class LoginPage implements OnInit {
         this.noUserFound = 'usernotfound';
       }
     });
-    //   firebase
-    //     .auth()
-    //     .signInWithPhoneNumber('+91' + this.phoneNumber, this.reCaptchaVerifier)
-    //     .then((data) => {
-    //       console.log(data);
-    //       this.router.navigate(['/', 'app', 'otp'], {
-    //         queryParams: { from: 'login' },
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
   }
 
   ionViewDidLeave() {
