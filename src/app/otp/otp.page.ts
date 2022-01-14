@@ -4,6 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import firebase from '@firebase/app-compat';
 import { ToastController } from '@ionic/angular';
+
+import { LinkService } from '../services/link.service';
+import User from '../model/data.model';
+import { LocalStorageService } from '../services/localstorage.service';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.page.html',
@@ -17,11 +21,14 @@ export class OtpPage implements OnInit {
   reCaptchaVerifier;
   auth = getAuth();
   otpConfirmation: firebase.default.auth.ConfirmationResult;
+  addUser: User = new User();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private linkService: LinkService,
+    private localStorageService: LocalStorageService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.from = params.from;
@@ -34,7 +41,13 @@ export class OtpPage implements OnInit {
 
   ionViewDidEnter() {
     this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'recaptcha-container'
+      'recaptcha-container',
+      {
+        size: 'invisible',
+        callback: function (response) {
+          // submitPhoneNumberAuth();
+        },
+      }
     );
     firebase
       .auth()
@@ -51,24 +64,37 @@ export class OtpPage implements OnInit {
     try {
       this.otpConfirmation
         .confirm(this.otp)
-        .then((result) => {
+        .then(async (result) => {
           console.log(result);
           if (this.from == 'create') {
-            // this.router.navigate(['/', 'app', 'create-password'], {
-            //   queryParams: {
-            //     username: this.username,
-            //     phoneNumber: this.phoneNumber,
-            //   },
-            // });
-            localStorage.setItem('isLinkInBioLoggedIn', 'yes');
-            this.router.navigate(['/', this.username], {
-              queryParams: { username: this.username },
-            });
+            this.addUser.key = Math.random().toString();
+            this.addUser.name = this.username;
+            this.addUser.dpPath = '';
+            this.addUser.phoneNumber = this.phoneNumber;
+            this.addUser.bio = '';
+            this.addUser.link = [];
+            this.addUser.quickLink = [];
+            this.addUser.theme = 'default';
+            this.linkService
+              .create(this.username, this.addUser)
+              .then(async () => {
+                console.log('Created new item successfully!');
+                const toast = await this.toastController.create({
+                  message: 'Your profile created. ',
+                  duration: 2000,
+                });
+                toast.present();
+                this.localStorageService.setItem('username', this.username);
+                this.router.navigate(['/', this.username]);
+              });
           } else if (this.from == 'login') {
-            localStorage.setItem('isLinkInBioLoggedIn', 'yes');
-            this.router.navigate(['/', this.username], {
-              queryParams: { username: this.username },
+            this.localStorageService.setItem('username', this.username);
+            const toast = await this.toastController.create({
+              message: 'Logged In Success. ',
+              duration: 2000,
             });
+            toast.present();
+            this.router.navigate(['/', this.username]);
           }
         })
         .catch((error) => {

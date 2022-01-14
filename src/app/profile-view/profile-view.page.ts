@@ -11,6 +11,7 @@ import { ValueChangesService } from '../services/value-changes.service';
 import { ShowQrPage } from './show-qr/show-qr.page';
 import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 import { ToastController } from '@ionic/angular';
+import { LocalStorageService } from '../services/localstorage.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -26,7 +27,8 @@ export class ProfileViewPage implements OnInit {
     private router: Router,
     public popoverController: PopoverController,
     private valueChangesService: ValueChangesService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private localStorageService: LocalStorageService
   ) {
     this.shareMyLink = window.location.href;
     this.route.queryParams.subscribe((params) => {
@@ -62,9 +64,11 @@ export class ProfileViewPage implements OnInit {
           break;
         }
         case 'LOGOUT': {
-          localStorage.removeItem('isLinkInBioLoggedIn');
-          this.showSettings =
-            localStorage.getItem('isLinkInBioLoggedIn') == 'yes' ? true : false;
+          this.localStorageService.removeItem('username');
+          this.isLoggedIn =
+            this.localStorageService.getItem('username') !== null
+              ? true
+              : false;
           break;
         }
       }
@@ -82,14 +86,15 @@ export class ProfileViewPage implements OnInit {
   shareMyLink: string = '';
   noUserFound: string = 'inprogress';
   removeLinks: boolean = false;
-  showSettings: boolean = false;
+  isLoggedIn: boolean = false;
   ngOnInit() {
+    this.isLoggedIn =
+      this.localStorageService.getItem('username') !== null ? true : false;
     this.getUser();
   }
 
+  ionViewWillEnter() {}
   getUser() {
-    this.showSettings =
-      localStorage.getItem('isLinkInBioLoggedIn') == 'yes' ? true : false;
     this.linkService.getUser(this.userId);
     this.linkService.subject$.subscribe((res: User) => {
       if (res != null) {
@@ -109,7 +114,7 @@ export class ProfileViewPage implements OnInit {
   async showQr() {
     const modal = await this.modalController.create({
       component: ShowQrPage,
-      cssClass: 'newLinkModal',
+      cssClass: 'qr-modal',
       backdropDismiss: true,
     });
     modal.onDidDismiss().then(async (data: any) => {});

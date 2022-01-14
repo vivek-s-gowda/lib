@@ -9,7 +9,7 @@
         share
       </span>
       <span
-        *ngIf="showSettings"
+        *ngIf="isLoggedIn"
         class="material-icons settings-icon-area"
         (click)="editProfilePopup($event)"
       >
@@ -58,13 +58,16 @@
       </span>
     </div>
     <div class="links-area">
-      <button
-        class="btn-style"
-        *ngIf="editView || links.length == 0 || links == undefined"
-        (click)="addNewLink()"
-      >
-        <h2>Add new link +</h2>
-      </button>
+      <span *ngIf="isLoggedIn">
+        <button
+          class="btn-style"
+          *ngIf="editView || links.length == 0 || links == undefined"
+          (click)="addNewLink()"
+        >
+          <h2>Add new link +</h2>
+        </button>
+      </span>
+      <h4 *ngIf="!isLoggedIn" class="company">No Links Here.</h4>
       <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4319517819579528"

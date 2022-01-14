@@ -8,7 +8,7 @@
         [(ngModel)]="username"
         type="text"
       ></ion-input>
-      <p *ngIf="noUserFound == 'usernotfound'">No Username found</p>
+      <p class="link-sample-fail" *ngIf="noUserFound == 'usernotfound'">No Username found</p>
       <button class="send-otp" (click)="checkAndLogin()">Send OTP</button>
     </div>
 

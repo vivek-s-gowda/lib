@@ -193,3 +193,10 @@ body {
   color: red;
   opacity: 0.7;
 }
+
+.qr-modal .modal-wrapper {
+  height: 50%;
+  position: absolute;
+  display: block;
+  border-radius: 10px 10px 10px 10px;
+}
