@@ -67,7 +67,12 @@
           <h2>Add new link +</h2>
         </button>
       </span>
-      <h4 *ngIf="!isLoggedIn" class="company">No Links Here.</h4>
+      <h4
+        *ngIf="!isLoggedIn && links.length == 0 || links == undefined "
+        class="company"
+      >
+        No Links Here.
+      </h4>
       <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4319517819579528"
@@ -239,4 +244,6 @@
       </svg>
     </div>
   </div>
+
+  <p class="company">Copyright (c) Pināka</p>
 </ion-content>

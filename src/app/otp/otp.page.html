@@ -1,7 +1,7 @@
 <ion-content>
   <div class="layout">
     <div class="otp-header">Enter OTP</div>
-    
+
     <div id="recaptcha-container"></div>
     <div class="full-width">
       <ion-input
@@ -10,7 +10,9 @@
         class="input-style"
         [(ngModel)]="otp"
       ></ion-input>
-      <button class="btn-style" (click)="createPassword()">{{ from == 'create' ? 'Set Password' : 'Login' }} </button>
+      <button class="btn-style" (click)="createPassword()">
+        {{ from == 'create' ? 'Create profile' : 'Login' }}
+      </button>
     </div>
     <div class="footer">
       <svg
@@ -47,4 +49,6 @@
       </svg>
     </div>
   </div>
+
+  <p class="company">Copyright (c) Pināka</p>
 </ion-content>

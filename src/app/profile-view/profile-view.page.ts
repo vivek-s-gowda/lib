@@ -12,6 +12,7 @@ import { ShowQrPage } from './show-qr/show-qr.page';
 import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 import { ToastController } from '@ionic/angular';
 import { LocalStorageService } from '../services/localstorage.service';
+import { FontsModalPage } from './fonts-modal/fonts-modal.page';
 
 @Component({
   selector: 'app-profile-view',
@@ -63,6 +64,10 @@ export class ProfileViewPage implements OnInit {
           this.removeLinks = true;
           break;
         }
+        case 'SELECT_FONTS': {
+          this.openFontsModal();
+          break;
+        }
         case 'LOGOUT': {
           this.localStorageService.removeItem('username');
           this.isLoggedIn =
@@ -88,8 +93,10 @@ export class ProfileViewPage implements OnInit {
   removeLinks: boolean = false;
   isLoggedIn: boolean = false;
   ngOnInit() {
-    this.isLoggedIn =
-      this.localStorageService.getItem('username') !== null ? true : false;
+    if (this.localStorageService.getItem('username') == this.userId) {
+      this.isLoggedIn =
+        this.localStorageService.getItem('username') !== null ? true : false;
+    }
     this.getUser();
   }
 
@@ -182,5 +189,20 @@ export class ProfileViewPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+
+  async openFontsModal() {
+    const modal = await this.modalController.create({
+      component: FontsModalPage,
+      // cssClass: 'newLinkModal',
+      backdropDismiss: true,
+    });
+    modal.onDidDismiss().then(async (data: any) => {
+      console.log(data, 'data from the quick link ');
+      this.quickLinks.push(data.data.newLink);
+      this.updatedUserData['quickLink'] = this.quickLinks;
+      this.linkService.update(this.name, this.updatedUserData);
+    });
+    return await modal.present();
   }
 }

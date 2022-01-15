@@ -20,7 +20,11 @@ const routes: Routes = [
       import('./quick-link-modal/quick-link-modal.module').then(
         (m) => m.QuickLinkModalPageModule
       ),
+  },  {
+    path: 'fonts-modal',
+    loadChildren: () => import('./fonts-modal/fonts-modal.module').then( m => m.FontsModalPageModule)
   },
+
 ];
 
 @NgModule({
