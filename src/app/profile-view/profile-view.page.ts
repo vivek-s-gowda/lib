@@ -98,6 +98,7 @@ export class ProfileViewPage implements OnInit {
         this.localStorageService.getItem('username') !== null ? true : false;
     }
     this.getUser();
+    // this.openFontsModal();
   }
 
   ionViewWillEnter() {}

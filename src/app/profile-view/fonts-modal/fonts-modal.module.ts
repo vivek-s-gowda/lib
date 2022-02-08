@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FontsModalPageRoutingModule } from './fonts-modal-routing.module';
 
 import { FontsModalPage } from './fonts-modal.page';
+import { NgxOtpModule } from 'ngx-otp';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FontsModalPageRoutingModule
+    FontsModalPageRoutingModule,
+    NgxOtpModule
   ],
   declarations: [FontsModalPage]
 })

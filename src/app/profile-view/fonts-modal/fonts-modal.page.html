@@ -1,27 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="close-button" (click)="close()">
+      <ion-title>Choose Font</ion-title
+      ><span class="material-icons social-icon default-margin-8"> close </span>
+    </div>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="layout">
-  <div class="close-button" (click)="close()">
-    <span class="material-icons social-icon default-margin-8"> close </span>
+  <div class="font-list-area">
+    <div class="list-item">Font one</div>
   </div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
-  <div >Font one</div>
+  <otp></otp>
+  <div class="otp-layout">
+    <input type="text" maxlength="1" class="otp-box" />
+    <input type="text" maxlength="1" class="otp-box" />
+    <input type="text" maxlength="1" class="otp-box" />
+    <input type="text" maxlength="1" class="otp-box" />
+    <input type="text" maxlength="1" class="otp-box" />
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="save-btn">
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
