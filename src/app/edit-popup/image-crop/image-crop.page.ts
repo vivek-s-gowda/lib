@@ -22,7 +22,7 @@ export class ImageCropPage implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
   }
-  imageLoaded(image: LoadedImage) {
+  imageLoaded() {
     // show cropper
   }
   cropperReady() {

@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ShowQrPage implements OnInit {
   @Input() url: string = window.location.href
+  margin: number = 4
   constructor() { }
 
   ngOnInit() {
