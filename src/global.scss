@@ -162,6 +162,9 @@ body {
   margin-bottom: 24px;
 }
 
+.default-margin-top {
+  margin-top: 24px;
+}
 .default-margin-8 {
   margin: 8px;
 }
@@ -199,13 +202,13 @@ body {
 }
 
 .qr-modal .modal-wrapper {
-  height: 50%;
+  height: 80%;
   position: absolute;
   display: block;
   border-radius: 10px 10px 10px 10px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 780px) {
   .smartphone {
     position: relative;
     width: 25%;
@@ -216,10 +219,10 @@ body {
     border-bottom-width: 60px;
     border-radius: 36px;
   }
-  
+
   /* The horizontal line on the top of the device */
   .smartphone:before {
-    content: '';
+    content: "";
     display: block;
     width: 60px;
     height: 5px;
@@ -230,10 +233,10 @@ body {
     background: #333;
     border-radius: 10px;
   }
-  
+
   /* The circle on the bottom of the device */
   .smartphone:after {
-    content: '';
+    content: "";
     display: block;
     width: 35px;
     height: 35px;
@@ -244,7 +247,7 @@ body {
     background: #333;
     border-radius: 50%;
   }
-  
+
   /* The screen (or content) of the device */
   .smartphone .content {
     background: white;

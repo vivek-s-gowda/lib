@@ -4,13 +4,19 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
+<ion-content> 
+  <span
+  class="material-icons close"
+  (click)="dissmiss()"
+>
+  close
+</span>
   <div class="layout no-height">
     <qr-code
       value="{{url}}"
       size="300"
       errorCorrectionLevel="Q"
-      centerImageSrc="./assets/icon/qr_icon.png"
+      centerImageSrc="./assets/icon/qr_icon1.png"
       centerImageSize="50"
       [margin]="margin"
     >
