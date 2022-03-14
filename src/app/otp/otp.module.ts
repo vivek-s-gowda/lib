@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OtpPageRoutingModule } from './otp-routing.module';
 
 import { OtpPage } from './otp.page';
+import { CodeInputModule } from 'angular-code-input';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OtpPageRoutingModule
+    OtpPageRoutingModule,
+    CodeInputModule
   ],
   declarations: [OtpPage]
 })

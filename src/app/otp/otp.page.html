@@ -4,12 +4,19 @@
 
     <div id="recaptcha-container"></div>
     <div class="full-width">
-      <ion-input
+      <!-- <ion-input
         type="text"
         placeholder="Enter OTP"
         class="input-style"
         [(ngModel)]="otp"
-      ></ion-input>
+        maxlength="6"
+      ></ion-input> -->
+      <code-input [isCodeHidden]="true"
+      class="default-margin-top"
+      [codeLength]="6"
+      (codeChanged)="onCodeChanged($event)"
+      (codeCompleted)="onCodeCompleted($event)">
+</code-input>
       <button class="btn-style" (click)="createPassword()">
         {{ from == 'create' ? 'Create profile' : 'Login' }}
       </button>

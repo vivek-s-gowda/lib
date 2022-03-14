@@ -110,4 +110,11 @@ export class OtpPage implements OnInit {
   }
 
   ionViewDidLeave() {}
+
+  onCodeChanged(code: string) {
+  }
+
+  onCodeCompleted(code: string) {
+    this.otp = code;
+  }
 }
