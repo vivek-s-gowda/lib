@@ -16,8 +16,9 @@
       </span>
       <div class="full-width">
         <ion-input class="input-style" placeholder="Link URL" formControlName='linkUrl'></ion-input>
+        <p class="error" *ngIf="linkForm.get('linkUrl').hasError('pattern')">Invalid URL</p>
         <ion-input class="input-style" placeholder="Link name" formControlName='linkName'></ion-input>
-        <button class="btn-style"  (click)="addNewLink()"><h2>Add</h2></button>
+        <button class="btn-style"  (click)="addNewLink()" [disabled]="!linkForm.valid"><h2>Add</h2></button>
       </div>
     <!-- </form> -->
     </form>

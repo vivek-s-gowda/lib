@@ -150,7 +150,6 @@ export class ProfileViewPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss().then(async (data: any) => {
-      console.log(data, 'data from the quick link ');
       this.quickLinks.push(data.data.newLink);
       this.updatedUserData['quickLink'] = this.quickLinks;
       this.linkService.update(this.name, this.updatedUserData);
@@ -181,7 +180,6 @@ export class ProfileViewPage implements OnInit {
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   async linkCopied() {
@@ -199,11 +197,12 @@ export class ProfileViewPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss().then(async (data: any) => {
-      console.log(data, 'data from the quick link ');
       this.quickLinks.push(data.data.newLink);
       this.updatedUserData['quickLink'] = this.quickLinks;
       this.linkService.update(this.name, this.updatedUserData);
     });
     return await modal.present();
   }
+
+  
 }

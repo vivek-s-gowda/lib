@@ -55,8 +55,12 @@ export class OtpPage implements OnInit {
       .then((data) => {
         this.otpConfirmation = data;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(async (err) => {
+        const toast = await this.toastController.create({
+          message: 'Too many attempts from this number. ',
+          duration: 2000,
+        });
+        toast.present();
       });
   }
 
@@ -65,7 +69,6 @@ export class OtpPage implements OnInit {
       this.otpConfirmation
         .confirm(this.otp)
         .then(async (result) => {
-          console.log(result);
           if (this.from == 'create') {
             this.addUser.key = Math.random().toString();
             this.addUser.name = this.username;
@@ -78,7 +81,6 @@ export class OtpPage implements OnInit {
             this.linkService
               .create(this.username, this.addUser)
               .then(async () => {
-                console.log('Created new item successfully!');
                 const toast = await this.toastController.create({
                   message: 'Your profile created. ',
                   duration: 2000,

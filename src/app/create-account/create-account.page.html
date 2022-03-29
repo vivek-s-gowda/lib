@@ -2,7 +2,7 @@
   <div class="layout">
     <div class="create-account-header">Create Account</div>
     <div class="full-width">
-      <ion-input class="input-style" placeholder="Phone number" [(ngModel)]="phoneNumber"></ion-input>
+      <ion-input type="number" maxlength="10" class="input-style" placeholder="Phone number" [(ngModel)]="phoneNumber"></ion-input>
       <button class="btn-style" (click)="checkAndLogin()" [disabled]="phoneNumber == ''">Continue <span class="material-icons">
         arrow_forward
         </span></button>

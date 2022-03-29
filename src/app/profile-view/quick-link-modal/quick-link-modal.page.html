@@ -2,7 +2,7 @@
   <form class="layout no-height" [formGroup]="linkForm">
     <div class="header">Add a quick link</div>
     <div class="full-width">
-      <div *ngIf="selectedIcon == ''" class="icons-layout">
+      <ion-content *ngIf="selectedIcon == ''" class="icon-layout-heights">
         <span
           *ngFor="let icon of iconsLoaded"
           class="material-icons social-icon default-margin-8"
@@ -10,8 +10,14 @@
         >
           {{icon}}
         </span>
-
-      </div>
+        <ion-infinite-scroll threshold="10px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more icons..."
+          >
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-content>
       <div *ngIf="selectedIcon != ''" class="icons-layout">
         <span class="material-icons social-icon default-margin-8">
           {{selectedIcon}}
@@ -22,6 +28,10 @@
         placeholder="Link URL"
         formControlName="linkUrl"
       ></ion-input>
+
+      <p class="error" *ngIf="linkForm.get('linkUrl').hasError('pattern')">
+        Invalid URL
+      </p>
       <button
         class="btn-style"
         (click)="addQuicLink()"
@@ -31,11 +41,4 @@
       </button>
     </div>
   </form>
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more icons..."
-    >
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>

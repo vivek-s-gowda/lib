@@ -15,12 +15,16 @@ import { Subject } from 'rxjs';
 export class LinkService {
   private dbPath = '/users';
   subject$ = new Subject();
+  numberExists$ = new Subject();
   user: AngularFireList<User>;
+  db:any;
   constructor(
     private fireBase: AngularFireDatabase,
     private firestore: AngularFirestore
   ) {
     this.user = fireBase.list(this.dbPath);
+    
+    //  this.db = fireBase.database();
   }
 
   getAll(): AngularFireList<User> {
@@ -53,7 +57,6 @@ export class LinkService {
     const dbRef = ref(getDatabase());
     set(child(dbRef, `users/${key}`), value)
       .then(() => {
-        console.log('data saved successfully');
       })
       .catch((error) => {});
   }
@@ -64,5 +67,11 @@ export class LinkService {
 
   deleteAll(): Promise<void> {
     return this.user.remove();
+  }
+
+  verifyNumber(value: string) {
+    this.fireBase.list('/users', ref => ref.orderByChild('phoneNumber').equalTo(value.toString())).snapshotChanges().subscribe((res) => {
+     res.length > 0 ? this.numberExists$.next(true) : this.numberExists$.next(false);
+    })
   }
 }
