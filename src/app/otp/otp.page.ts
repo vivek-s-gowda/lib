@@ -73,6 +73,13 @@ export class OtpPage implements OnInit {
             this.addUser.key = Math.random().toString();
             this.addUser.name = this.username;
             this.addUser.dpPath = '';
+            this.addUser.colors = {
+              backgroundColor: '#ffffff',
+              linkButtonColor: '#bd4b4b',
+              linkButtonStrokeColor: '#bd4b4b',
+              linkButtonTextColor: '#eeeeee',
+              textColor: '#000000',
+            };
             this.addUser.phoneNumber = this.phoneNumber;
             this.addUser.bio = '';
             this.addUser.link = [];
@@ -113,8 +120,7 @@ export class OtpPage implements OnInit {
 
   ionViewDidLeave() {}
 
-  onCodeChanged(code: string) {
-  }
+  onCodeChanged(code: string) {}
 
   onCodeCompleted(code: string) {
     this.otp = code;

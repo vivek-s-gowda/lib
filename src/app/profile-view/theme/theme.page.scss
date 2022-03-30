@@ -1,0 +1,22 @@
+.no-height {
+  height: auto;
+}
+
+.close {
+  float: right;
+  margin: 24px;
+}
+
+.fonts {
+  font-size: 13pt;
+}
+
+.color-layout {
+  display: flex;
+  flex-direction: column;
+
+  .color-line {
+    display: flex;
+    justify-content: space-between;
+  }
+}

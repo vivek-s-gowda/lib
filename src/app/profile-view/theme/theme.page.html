@@ -1,0 +1,54 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Your QR</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <span class="material-icons close" (click)="dissmiss()"> close </span>
+  <div class="layout no-height">
+    <div class="color-layout">
+      <span class="color-line default-margin-top">
+        <label class="fonts">Background Color</label>
+        <input
+          class="default-margin-left"
+          type="color"
+          [(ngModel)]="backgroundColor"
+      /></span>
+      <span class="color-line default-margin-top">
+        <label class="fonts">Text Color</label>
+        <input
+          class="default-margin-left"
+          type="color"
+          [(ngModel)]="textColor"
+        />
+      </span>
+      <span class="color-line default-margin-top">
+        <label class="fonts">Link Button Color</label>
+        <input
+          class="default-margin-left"
+          type="color"
+          [(ngModel)]="linkButtonColor"
+      /></span>
+      <span class="color-line default-margin-top">
+        <label class="fonts">Button Stroke Color</label>
+        <input
+          class="default-margin-left"
+          type="color"
+          [(ngModel)]="linkButtonStrokeColor"
+        />
+      </span>
+      <span class="color-line default-margin-top">
+        <label class="fonts">Button Text Color</label>
+        <input
+          class="default-margin-left"
+          type="color"
+          [(ngModel)]="linkButtonTextColor"
+        />
+      </span>
+    </div>
+
+    <button class="btn-style" (click)="reset()"><h2>Reset</h2></button>
+    <button class="btn-style" (click)="save()"><h2>Save</h2></button>
+  </div>
+</ion-content>

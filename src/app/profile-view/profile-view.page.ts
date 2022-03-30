@@ -9,6 +9,7 @@ import { PopoverController } from '@ionic/angular';
 import { EditPopupPage } from '../edit-popup/edit-popup.page';
 import { ValueChangesService } from '../services/value-changes.service';
 import { ShowQrPage } from './show-qr/show-qr.page';
+import { ThemePage } from './theme/theme.page';
 import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 import { ToastController } from '@ionic/angular';
 import { LocalStorageService } from '../services/localstorage.service';
@@ -68,6 +69,10 @@ export class ProfileViewPage implements OnInit {
           this.openFontsModal();
           break;
         }
+        case 'THEME': {
+          this.showTheme();
+          break;
+        }
         case 'LOGOUT': {
           this.localStorageService.removeItem('username');
           this.isLoggedIn =
@@ -92,6 +97,7 @@ export class ProfileViewPage implements OnInit {
   noUserFound: string = 'inprogress';
   removeLinks: boolean = false;
   isLoggedIn: boolean = false;
+  theme:any;
   ngOnInit() {
     if (this.localStorageService.getItem('username') == this.userId) {
       this.isLoggedIn =
@@ -105,6 +111,7 @@ export class ProfileViewPage implements OnInit {
   getUser() {
     this.linkService.getUser(this.userId);
     this.linkService.subject$.subscribe((res: User) => {
+      console.log(res)
       if (res != null) {
         this.noUserFound = 'userfound';
         this.updatedUserData = res;
@@ -113,6 +120,7 @@ export class ProfileViewPage implements OnInit {
         this.bio = res['bio'];
         this.quickLinks = res['quickLink'] != undefined ? res['quickLink'] : [];
         this.dpPath = res['dpPath'];
+        this.theme = res['colors'];
       } else {
         this.noUserFound = 'usernotfound';
       }
@@ -126,6 +134,25 @@ export class ProfileViewPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss().then(async (data: any) => {});
+    return await modal.present();
+  }
+
+  async showTheme() {
+    const modal = await this.modalController.create({
+      component: ThemePage,
+      cssClass: 'qr-modal',
+      backdropDismiss: true,
+      componentProps:{
+        colors: this.theme,
+      }
+    });
+    modal.onDidDismiss().then(async (data: any) => {
+      console.log(data)
+      
+      this.updatedUserData['colors'] = data.data;
+      this.linkService.update(this.name, this.updatedUserData);
+      this.getUser();
+    });
     return await modal.present();
   }
 
@@ -203,6 +230,4 @@ export class ProfileViewPage implements OnInit {
     });
     return await modal.present();
   }
-
-  
 }

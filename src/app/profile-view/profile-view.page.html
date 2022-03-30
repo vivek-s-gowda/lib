@@ -1,10 +1,15 @@
 <ion-content>
-  <div *ngIf="noUserFound == 'userfound'" class="layout">
+  <div
+    *ngIf="noUserFound == 'userfound'"
+    class="layout"
+    [style.backgroundColor]="theme.backgroundColor"
+  >
     <div class="share-icon-area">
       <span
         class="material-icons"
         [cdkCopyToClipboard]="shareMyLink"
         (click)="linkCopied()"
+        [style.color]="theme.textColor"
       >
         share
       </span>
@@ -12,6 +17,7 @@
         *ngIf="isLoggedIn"
         class="material-icons settings-icon-area"
         (click)="editProfilePopup($event)"
+        [style.color]="theme.textColor"
       >
         settings
       </span>
@@ -19,18 +25,25 @@
     </div>
     <div>
       <div *ngIf="dpPath == ''" class="profile-picture">
-        <span class="material-icons primary-color md-36"> account_circle </span>
+        <span
+          class="material-icons primary-color md-36"
+          [style.color]="theme.linkButtonTextColor"
+        >
+          account_circle
+        </span>
       </div>
       <ion-avatar
         *ngIf="dpPath != ''"
         class="profile-picture-size"
         slot="start"
+        [style.backgroundColor]="theme.linkButtonColor"
+        [style.borderColor]="theme.linkButtonStrokeColor"
       >
         <img [src]="dpPath" />
       </ion-avatar>
     </div>
-    <div class="profile-name">{{name}}</div>
-    <div class="bio-lines">{{bio}}</div>
+    <div class="profile-name" [style.color]="theme.textColor">{{name}}</div>
+    <div class="bio-lines" [style.color]="theme.textColor">{{bio}}</div>
     <div>
       <div *ngIf="editView" class="icons-add-position">
         <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
@@ -38,6 +51,7 @@
             *ngFor="let quikLink of quickLinks"
             class="material-icons social-icon"
             (click)="openLink(quikLink.linkUrl)"
+            [style.color]="theme.textColor"
           >
             {{quikLink.icon}}
           </span>
@@ -53,6 +67,7 @@
         class="material-icons social-icon"
         *ngFor="let quikLink of quickLinks"
         (click)="openLink(quikLink.linkUrl)"
+        [style.color]="theme.textColor"
       >
         {{quikLink.icon}}
       </span>
@@ -63,6 +78,9 @@
           class="btn-style"
           *ngIf="editView || links.length == 0 || links == undefined"
           (click)="addNewLink()"
+          [style.backgroundColor]="theme.linkButtonColor"
+          [style.borderColor]="theme.linkButtonStrokeColor"
+          [style.color]="theme.linkButtonTextColor"
         >
           <h2>Add new link +</h2>
         </button>
@@ -94,9 +112,16 @@
         *ngFor="let link of links"
         class="btn-style"
         (click)="openLink(link.linkUrl)"
+        [style.backgroundColor]="theme.linkButtonColor"
+        [style.borderColor]="theme.linkButtonStrokeColor"
+        [style.color]="theme.linkButtonTextColor"
       >
         <span class="display-flex-center">
-          <ion-avatar class="image-size" slot="start">
+          <ion-avatar
+            class="image-size"
+            slot="start"
+            [style.borderColor]="theme.linkButtonStrokeColor"
+          >
             <!-- <img [src]="link.imageUrl" /> -->
             <span class="material-icons social-icon icon-margin-zero">
               link

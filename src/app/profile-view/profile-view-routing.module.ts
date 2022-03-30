@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'fonts-modal',
     loadChildren: () => import('./fonts-modal/fonts-modal.module').then( m => m.FontsModalPageModule)
   },
+  {
+    path: 'theme',
+    loadChildren: () => import('./theme/theme.module').then( m => m.ThemePageModule)
+  },
 
 ];
 

@@ -8,5 +8,6 @@ export default class User {
   quickLink?: any[];
   theme?: string;
   fontFamily?: string;
-  messages?: any[]
+  messages?: any[];
+  colors: any;
 }
