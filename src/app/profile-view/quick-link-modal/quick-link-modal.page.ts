@@ -20,13 +20,15 @@ export class QuickLinkModalPage implements OnInit {
   icons = [];
   iconsLoaded = [];
   loadCounter: number = 0;
-  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  // reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  
+  urlPattern2 = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
   ngOnInit() {
     this.icons = this.iconService.getIconsList();
     this.iconsLoaded = [...this.icons[this.loadCounter]];
     this.linkForm = this.fb.group({
       icon: ['', Validators.required],
-      linkUrl: ['', [Validators.required, Validators.pattern(this.reg)]],
+      linkUrl: ['', [Validators.required, Validators.pattern(this.urlPattern2)]],
     });
   }
 
@@ -53,5 +55,9 @@ export class QuickLinkModalPage implements OnInit {
       //   ev.target.disabled = true;
       // }
     }, 500);
+  }
+
+  dissmiss() {
+    this.modalController.dismiss();
   }
 }

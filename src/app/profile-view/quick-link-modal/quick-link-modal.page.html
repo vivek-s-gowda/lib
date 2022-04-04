@@ -1,6 +1,6 @@
 <ion-content>
   <form class="layout no-height" [formGroup]="linkForm">
-    <div class="header">Add a quick link</div>
+    <div class="header">Add a quick link <span class="material-icons close" (click)="dissmiss()"> close </span></div>
     <div class="full-width">
       <ion-content *ngIf="selectedIcon == ''" class="icon-layout-heights">
         <span

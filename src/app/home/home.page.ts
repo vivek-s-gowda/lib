@@ -22,7 +22,7 @@ export class HomePage {
 
   showUsernameUrl(event) {
     if (this.username != '') {
-      this.userLink = 'lincinbio.com/' + event.target.value;
+      this.userLink = 'lincit.one/' + event.target.value;
       this.usernameNotAvailable = false;
     }
   }

@@ -65,12 +65,21 @@
     >
       <span
         class="material-icons social-icon"
-        *ngFor="let quikLink of quickLinks"
-        (click)="openLink(quikLink.linkUrl)"
+        *ngFor="let quikLink of quickLinks; let i = index"
+        (click)="openLink(quikLink.linkUrl,i,'QUICK_LINK')"
         [style.color]="theme.textColor"
+        [ngClass]="deleteLinks ? 'remove-shake' : ''"
       >
         {{quikLink.icon}}
       </span>
+    </div>
+
+    <div
+      *ngIf="deleteLinks"
+      class="profile-name"
+      [style.color]="theme.textColor"
+    >
+      Tap on links to remove them
     </div>
     <div class="links-area">
       <span *ngIf="isLoggedIn">
@@ -109,14 +118,30 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
       <button
-        *ngFor="let link of links"
+        *ngIf="deleteLinks && links.length != 0"
         class="btn-style"
-        (click)="openLink(link.linkUrl)"
         [style.backgroundColor]="theme.linkButtonColor"
         [style.borderColor]="theme.linkButtonStrokeColor"
         [style.color]="theme.linkButtonTextColor"
+        (click)="deleteLinks = false;"
       >
-        <span class="display-flex-center">
+        <span class="display-flex-center links-style-position-center">
+          <span class="link">Normal Mode</span>
+        </span>
+      </button>
+      <button
+        *ngFor="let link of links; let i = index"
+        class="btn-style"
+        (click)="openLink(link.linkUrl,i,'NORMAL_LINK')"
+        [style.backgroundColor]="theme.linkButtonColor"
+        [style.borderColor]="theme.linkButtonStrokeColor"
+        [style.color]="theme.linkButtonTextColor"
+        [ngClass]="deleteLinks ? 'remove-shake' : ''"
+      >
+        <span
+          class="display-flex-center"
+          [ngClass]="deleteLinks ? 'links-style-position' : ''"
+        >
           <ion-avatar
             class="image-size"
             slot="start"
@@ -128,6 +153,7 @@
             </span>
           </ion-avatar>
           <span class="link">{{link.linkName}}</span>
+          <span *ngIf="deleteLinks" class="material-icons close"> cancel</span>
         </span>
       </button>
 
@@ -145,7 +171,7 @@
       </ion-fab> -->
     </div>
 
-    <div class="footer">
+    <div class="footer" (click)="goHome()">
       <svg
         width="89"
         height="83"

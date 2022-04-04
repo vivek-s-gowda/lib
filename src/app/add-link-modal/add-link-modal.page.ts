@@ -20,14 +20,15 @@ export class AddLinkModalPage implements OnInit {
   ) {}
 
   linkForm: FormGroup;
-  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  // reg = 'http';
+  urlPattern2 = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
   ngOnInit() {
     this.linkForm = this.fb.group({
       imageUrl: [
         'https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46',
       ],
-      linkUrl: ['', [Validators.required,Validators.pattern(this.reg)]],
+      linkUrl: ['', [Validators.required,Validators.pattern(this.urlPattern2)]],
       linkName: ['', Validators.required],
     });
   }
@@ -40,4 +41,10 @@ export class AddLinkModalPage implements OnInit {
       newLink: this.linkForm.value,
     });
   }
+
+  dissmiss(){
+    this.modalController.dismiss();
+  }
+
+  
 }

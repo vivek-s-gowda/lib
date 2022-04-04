@@ -62,7 +62,7 @@ export class ProfileViewPage implements OnInit {
           break;
         }
         case 'REMOVE': {
-          this.removeLinks = true;
+          this.deleteLinks = true;
           break;
         }
         case 'SELECT_FONTS': {
@@ -97,7 +97,8 @@ export class ProfileViewPage implements OnInit {
   noUserFound: string = 'inprogress';
   removeLinks: boolean = false;
   isLoggedIn: boolean = false;
-  theme:any;
+  theme: any;
+  deleteLinks: boolean = false;
   ngOnInit() {
     if (this.localStorageService.getItem('username') == this.userId) {
       this.isLoggedIn =
@@ -111,7 +112,7 @@ export class ProfileViewPage implements OnInit {
   getUser() {
     this.linkService.getUser(this.userId);
     this.linkService.subject$.subscribe((res: User) => {
-      console.log(res)
+      console.log(res);
       if (res != null) {
         this.noUserFound = 'userfound';
         this.updatedUserData = res;
@@ -142,13 +143,13 @@ export class ProfileViewPage implements OnInit {
       component: ThemePage,
       cssClass: 'qr-modal',
       backdropDismiss: true,
-      componentProps:{
+      componentProps: {
         colors: this.theme,
-      }
+      },
     });
     modal.onDidDismiss().then(async (data: any) => {
-      console.log(data)
-      
+      console.log(data);
+
       this.updatedUserData['colors'] = data.data;
       this.linkService.update(this.name, this.updatedUserData);
       this.getUser();
@@ -184,8 +185,21 @@ export class ProfileViewPage implements OnInit {
     return await modal.present();
   }
 
-  openLink(link: string) {
-    this.document.location.href = link;
+  openLink(link: string, index?: number, linkFrom?: string) {
+    if (this.deleteLinks) {
+      if (linkFrom === 'QUICK_LINK') {
+        this.quickLinks.splice(index, 1);
+        this.updatedUserData['quickLink'] = this.quickLinks;
+        this.linkService.update(this.name, this.updatedUserData);
+      } else {
+        this.links.splice(index, 1);
+        this.updatedUserData['link'] = this.links;
+        this.linkService.update(this.name, this.updatedUserData);
+      }
+      console.log('delete links', index);
+    } else {
+      this.document.location.href = link;
+    }
   }
 
   goHome() {

@@ -8,6 +8,10 @@
   font-size: 24px;
   line-height: 19px;
   color: var(--secondary-color);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .image-size {
@@ -31,3 +35,6 @@
   margin-left: 0;
 }
 
+.close {
+  float: right;
+}

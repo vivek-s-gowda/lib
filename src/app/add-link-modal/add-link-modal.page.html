@@ -1,25 +1,42 @@
 <ion-content>
+  
   <form class="layout no-height" [formGroup]="linkForm">
     <!-- <form class="full-width"  action=""> -->
-      <div class="header">Add new link</div>
-      <span class="link-image-area">
-        <ion-avatar class="image-size" slot="start">
-          <!-- <img
+    <div class="header">Add new link <span class="material-icons close" (click)="dissmiss()"> close </span></div>
+    <span class="link-image-area">
+      <ion-avatar class="image-size" slot="start">
+        <!-- <img
             src="https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46"
           /> -->
-          
-          <span class="material-icons social-icon icon-margin-zero"> link </span>
-        </ion-avatar>
-        <span class="general-text-16 default-margin-left"
-          >Choose image for link</span
-        >
-      </span>
-      <div class="full-width">
-        <ion-input class="input-style" placeholder="Link URL" formControlName='linkUrl'></ion-input>
-        <p class="error" *ngIf="linkForm.get('linkUrl').hasError('pattern')">Invalid URL</p>
-        <ion-input class="input-style" placeholder="Link name" formControlName='linkName'></ion-input>
-        <button class="btn-style"  (click)="addNewLink()" [disabled]="!linkForm.valid"><h2>Add</h2></button>
-      </div>
+
+        <span class="material-icons social-icon icon-margin-zero"> link </span>
+      </ion-avatar>
+      <span class="general-text-16 default-margin-left"
+        >Choose image for link</span
+      >
+    </span>
+    <div class="full-width">
+      <ion-input
+        class="input-style"
+        placeholder="Link URL"
+        formControlName="linkUrl"
+      ></ion-input>
+      <p class="error" *ngIf="linkForm.get('linkUrl').hasError('pattern')">
+        Invalid URL
+      </p>
+      <ion-input
+        class="input-style"
+        placeholder="Link name"
+        formControlName="linkName"
+      ></ion-input>
+      <button
+        class="btn-style"
+        (click)="addNewLink()"
+        [disabled]="!linkForm.valid"
+      >
+        <h2>Add</h2>
+      </button>
+    </div>
     <!-- </form> -->
-    </form>
+  </form>
 </ion-content>

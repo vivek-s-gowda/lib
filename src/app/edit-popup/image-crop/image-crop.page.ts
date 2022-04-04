@@ -43,4 +43,9 @@ export class ImageCropPage implements OnInit {
         });
       });
   }
+
+  dissmiss(){
+    this.imageChangedEvent = null;
+    this.modalController.dismiss();
+  }
 }

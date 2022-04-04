@@ -34,7 +34,7 @@ export class EditPopupPage implements OnInit {
   }
 
   setMenuValues(menuItem) {
-    // this.popoverCtrl.dismiss();
+    this.popoverCtrl.dismiss();
     this.valueChangesService.setValues(menuItem);
   }
 
@@ -83,23 +83,27 @@ export class EditPopupPage implements OnInit {
       componentProps: { imageChangedEvent: event },
     });
     modal.onDidDismiss().then(async (data: any) => {
-      if(this.data['dpPath'] != '') {
-        this.firebaseUploadService.deleteFile(this.data['dpPath']);
-      }
-      this.firebaseUploadService.storeImage(data.data.croppedImage).then(
-        (res: any) => {
-          if (res) {
-            this.data['dpPath'] = res;
-            this.linkService.update(this.name, this.data);
-            this.valueChangesService.setValues('UPDATE_PROFILE');
-            this.barStatus = false;
-            this.popoverCtrl.dismiss();
-          }
-        },
-        (error: any) => {
-          this.barStatus = false;
+      if(data.data.dismissed !== undefined) 
+      {
+        if(this.data['dpPath'] != '') {
+          this.firebaseUploadService.deleteFile(this.data['dpPath']);
         }
-      );
+        this.firebaseUploadService.storeImage(data.data.croppedImage).then(
+          (res: any) => {
+            if (res) {
+              this.data['dpPath'] = res;
+              this.linkService.update(this.name, this.data);
+              this.valueChangesService.setValues('UPDATE_PROFILE');
+              this.barStatus = false;
+              this.popoverCtrl.dismiss();
+            }
+          },
+          (error: any) => {
+            this.barStatus = false;
+          }
+        );
+      }
+
     });
     return await modal.present();
   }
