@@ -211,7 +211,7 @@ body {
 @media only screen and (min-width: 780px) {
   .smartphone {
     position: relative;
-    width: 25%;
+    // width: 25%;
     height: 100%;
     margin: auto;
     border: 16px black solid;
@@ -219,7 +219,6 @@ body {
     border-bottom-width: 60px;
     border-radius: 36px;
   }
-
   /* The horizontal line on the top of the device */
   .smartphone:before {
     content: "";
