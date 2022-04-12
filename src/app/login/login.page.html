@@ -11,7 +11,7 @@
       <p class="link-sample-fail" *ngIf="noUserFound == 'usernotfound'">
         No Username found
       </p>
-      <button class="send-otp" (click)="checkAndLogin()">Continue <span class="material-icons">
+      <button class="send-otp" (click)="checkAndLogin()" [disabled]="username==''">Continue <span class="material-icons">
         arrow_forward
         </span></button>
     </div>
