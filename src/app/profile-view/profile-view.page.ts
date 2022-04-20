@@ -14,6 +14,7 @@ import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 import { ToastController } from '@ionic/angular';
 import { LocalStorageService } from '../services/localstorage.service';
 import { FontsModalPage } from './fonts-modal/fonts-modal.page';
+import { WaLinkPage } from './wa-link/wa-link.page'
 
 @Component({
   selector: 'app-profile-view',
@@ -71,6 +72,10 @@ export class ProfileViewPage implements OnInit {
         }
         case 'THEME': {
           this.showTheme();
+          break;
+        }
+        case 'ADD_WHATSAPP_LINK': {
+          this.addWaQuickLink();
           break;
         }
         case 'LOGOUT': {
@@ -133,6 +138,11 @@ export class ProfileViewPage implements OnInit {
       component: ShowQrPage,
       cssClass: 'qr-modal',
       backdropDismiss: true,
+      componentProps:{ 
+        theme:this.theme,
+        imageUrl: this.dpPath,
+        Username: this.name
+      }
     });
     modal.onDidDismiss().then(async (data: any) => {});
     return await modal.present();
@@ -174,6 +184,20 @@ export class ProfileViewPage implements OnInit {
   async addQuickLink() {
     const modal = await this.modalController.create({
       component: QuickLinkModalPage,
+      cssClass: 'newLinkModal',
+      backdropDismiss: true,
+    });
+    modal.onDidDismiss().then(async (data: any) => {
+      this.quickLinks.push(data.data.newLink);
+      this.updatedUserData['quickLink'] = this.quickLinks;
+      this.linkService.update(this.name, this.updatedUserData);
+    });
+    return await modal.present();
+  }
+
+  async addWaQuickLink() {
+    const modal = await this.modalController.create({
+      component: WaLinkPage,
       cssClass: 'newLinkModal',
       backdropDismiss: true,
     });

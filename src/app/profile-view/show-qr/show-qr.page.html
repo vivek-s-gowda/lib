@@ -4,14 +4,22 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content> 
-  <span
-  class="material-icons close"
-  (click)="dissmiss()"
->
-  close
-</span>
-  <div class="layout no-height">
+<ion-content>
+  <span class="center-close">
+    <span class="material-icons close" (click)="dissmiss()"> close </span>
+  </span>
+  <div #screen class="layout no-height" [style.background]="background">
+    <ion-avatar
+      *ngIf="imageUrl != ''"
+      class="profile-picture-size"
+      slot="start"
+      [style.backgroundColor]="theme.linkButtonColor"
+      [style.borderColor]="theme.linkButtonStrokeColor"
+    >
+      <img [src]="imageUrl" />
+    </ion-avatar>
+
+    <p class="white">lincit.one/{{Username}}</p>
     <qr-code
       value="{{url}}"
       size="300"
@@ -21,5 +29,17 @@
       [margin]="margin"
     >
     </qr-code>
+    <span
+      (click)="downloadImage()"
+      class="material-icons primary-color md-36"
+      [style.color]="'white'"
+    >
+      download
+    </span>
+    <p (click)="downloadImage()" class="white">Download</p>
+  </div>
+  <div #download>
+    <img #canvas />
+    <a #downloadLink></a>
   </div>
 </ion-content>

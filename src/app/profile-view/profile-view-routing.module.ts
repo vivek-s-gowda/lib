@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'theme',
     loadChildren: () => import('./theme/theme.module').then( m => m.ThemePageModule)
   },
+  {
+    path: 'wa-link',
+    loadChildren: () => import('./wa-link/wa-link.module').then( m => m.WaLinkPageModule)
+  },
 
 ];
 

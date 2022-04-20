@@ -1,0 +1,34 @@
+<ion-content>
+  <form class="layout no-height" [formGroup]="linkForm">
+    <div class="header">
+      <span class="material-icons social-icon default-margin-8">
+        {{selectedIcon}} </span
+      >Whatsapp Direct
+      <span class="material-icons close" (click)="dissmiss()"> close </span>
+    </div>
+    <div class="full-width">
+      <ion-input
+        class="input-style"
+        placeholder="Phone number"
+        formControlName="phone"
+      ></ion-input>
+
+      <p class="error" *ngIf="linkForm.get('phone').hasError('pattern')">
+        Number is not a valid phone number
+      </p>
+      <p class="error" *ngIf="linkForm.get('phone').hasError('required')">
+        Phone number is required
+      </p>
+      <button
+        class="btn-style"
+        (click)="addQuicLink()"
+        [disabled]="!linkForm.valid"
+      >
+        <h2>Add</h2>
+      </button>
+      <p class="error">
+        Privacy concern : Anyone can send direct message to your whatsapp
+      </p>
+    </div>
+  </form>
+</ion-content>
