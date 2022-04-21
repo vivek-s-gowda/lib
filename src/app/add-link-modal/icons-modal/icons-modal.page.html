@@ -1,0 +1,8 @@
+<ion-content>
+  <span class="center-close">
+    <span class="material-icons close" (click)="dissmiss()"> close </span>
+  </span>
+  <div class="layout no-height">
+    <img *ngFor="let image of imageLinks" [src]="image" (click)="selectImage(image)"/>
+  </div>
+</ion-content>

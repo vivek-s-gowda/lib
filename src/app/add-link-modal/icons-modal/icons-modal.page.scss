@@ -1,0 +1,41 @@
+.no-height {
+  height: auto;
+  background-color: #fff;
+  display: block;
+}
+
+.white {
+  color: #fff;
+}
+
+.close {
+  margin: 24px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.profile-picture-size {
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--secondary-lite);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  border-radius: 50%;
+}
+
+ion-content {
+  --background: transparent;
+}
+
+.center-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  margin: 12px;
+}

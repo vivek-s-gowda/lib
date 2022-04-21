@@ -75,7 +75,7 @@
     </div>
 
     <div
-      *ngIf="deleteLinks"
+      *ngIf="deleteLinks && links.length != 0"
       class="profile-name"
       [style.color]="theme.textColor"
     >
@@ -147,8 +147,8 @@
             slot="start"
             [style.borderColor]="theme.linkButtonStrokeColor"
           >
-            <!-- <img [src]="link.imageUrl" /> -->
-            <span class="material-icons social-icon icon-margin-zero">
+            <img *ngIf="link.imageUrl != ''" [src]="link.imageUrl" />
+            <span  *ngIf="link.imageUrl == ''" class="material-icons social-icon icon-margin-zero">
               link
             </span>
           </ion-avatar>

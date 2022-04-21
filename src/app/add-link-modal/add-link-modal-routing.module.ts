@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: AddLinkModalPage
+  },  {
+    path: 'icons-modal',
+    loadChildren: () => import('./icons-modal/icons-modal.module').then( m => m.IconsModalPageModule)
   }
+
 ];
 
 @NgModule({

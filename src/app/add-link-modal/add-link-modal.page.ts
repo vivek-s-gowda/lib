@@ -7,6 +7,7 @@ import {
   FormArray,
   Validators,
 } from '@angular/forms';
+import { IconsModalPage } from './icons-modal/icons-modal.page'
 
 @Component({
   selector: 'app-add-link-modal',
@@ -21,14 +22,18 @@ export class AddLinkModalPage implements OnInit {
 
   linkForm: FormGroup;
   // reg = 'http';
-  urlPattern2 = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+  urlPattern2 =
+    /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
   ngOnInit() {
     this.linkForm = this.fb.group({
       imageUrl: [
-        'https://lh3.googleusercontent.com/-169teTA_3vI/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuck8Hcd40DI7czgwOv2JRdXZVtqptw/photo.jpg?sz=46',
+        '',
       ],
-      linkUrl: ['', [Validators.required,Validators.pattern(this.urlPattern2)]],
+      linkUrl: [
+        '',
+        [Validators.required, Validators.pattern(this.urlPattern2)],
+      ],
       linkName: ['', Validators.required],
     });
   }
@@ -42,9 +47,20 @@ export class AddLinkModalPage implements OnInit {
     });
   }
 
-  dissmiss(){
+  dissmiss() {
     this.modalController.dismiss();
   }
 
-  
+  async openIconModal() {
+    const modal = await this.modalController.create({
+      component: IconsModalPage,
+      cssClass: 'qr-modal',
+      backdropDismiss: true,
+    });
+    modal.onDidDismiss().then(async (data: any) => {
+      console.log(data)
+      this.linkForm.get('imageUrl').setValue(data.data.imagePath)
+    });
+    return await modal.present();
+  }
 }
