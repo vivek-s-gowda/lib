@@ -111,6 +111,12 @@ body {
   flex-direction: column;
   padding: 24px;
   overflow-x: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.layout::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .primary-color {
@@ -218,47 +224,13 @@ body {
 }
 
 @media only screen and (min-width: 780px) {
-  .smartphone {
-    position: relative;
-    // width: 25%;
+  .desktop {
+    background: #fff;
+    width: 100%;
     height: 100%;
-    margin: auto;
-    border: 16px black solid;
-    border-top-width: 60px;
-    border-bottom-width: 60px;
-    border-radius: 36px;
   }
-  /* The horizontal line on the top of the device */
-  .smartphone:before {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 5px;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #333;
-    border-radius: 10px;
-  }
-
-  /* The circle on the bottom of the device */
-  .smartphone:after {
-    content: "";
-    display: block;
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    left: 50%;
-    bottom: -65px;
-    transform: translate(-50%, -50%);
-    background: #333;
-    border-radius: 50%;
-  }
-
-  /* The screen (or content) of the device */
-  .smartphone .content {
-    background: white;
+  .side-phone-area {
+    width: 300px;
   }
 }
 

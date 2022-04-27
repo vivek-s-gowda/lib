@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
-  gesture:boolean = true;
+  gesture: boolean = true;
+  ngOnInit() {}
 }

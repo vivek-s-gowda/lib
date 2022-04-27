@@ -1,3 +1,60 @@
-<ion-app>
-  <ion-router-outlet [swipeGesture]="gesture"></ion-router-outlet>
+<ion-app class="remove-flex">
+  <div class="logo-area">
+    <svg
+      width="40"
+      height="64"
+      viewBox="0 0 40 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 0C4.41828 0 8 3.58172 8 8V64C3.58172 64 0 60.4183 0 56V0Z"
+        fill="#7B7B7B"
+      />
+      <path
+        d="M8 56.8889H40C40 60.8163 36.8162 64 32.8889 64H8V56.8889Z"
+        fill="#7B7B7B"
+      />
+      <path
+        d="M32 29.3333C32 24.915 35.5817 21.3333 40 21.3333V56.8889H32V29.3333Z"
+        fill="#7B7B7B"
+      />
+      <rect
+        x="32"
+        y="7.11108"
+        width="8"
+        height="7.11111"
+        rx="3.55556"
+        fill="#BD4B4B"
+      />
+    </svg>
+
+    <span class="text">Lincit.one</span>
+  </div>
+  <div class="banners">
+    <ion-slides class="slides-area" pager="true">
+      <ion-slide class="slides single-slide">
+        <img src="assets/desktop-slides/undraw_social_thinking_re_y8cc.svg" />
+        <div class="default-margin-bottom gray-text">
+          Join a community where million creators are using
+        </div>
+      </ion-slide>
+      <ion-slide class="slides single-slide">
+        <img src="assets/desktop-slides/undraw_editable_re_4l94.svg" />
+        <div class="default-margin-bottom gray-text">
+          One stop for all your links
+        </div>
+      </ion-slide>
+      <ion-slide class="slides single-slide">
+        <img
+          src="assets/desktop-slides/undraw_mobile_application_re_13u3.svg"
+        />
+        <div class="default-margin-bottom gray-text">Made for creators</div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-router-outlet
+    class="desktop-screen"
+    [swipeGesture]="gesture"
+  ></ion-router-outlet>
 </ion-app>
