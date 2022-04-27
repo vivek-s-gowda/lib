@@ -32,7 +32,7 @@
     <span class="text">Lincit.one</span>
   </div>
   <div class="banners">
-    <ion-slides class="slides-area" pager="true">
+    <ion-slides class="slides-area" [options]="slideOpts">
       <ion-slide class="slides single-slide">
         <img src="assets/desktop-slides/undraw_social_thinking_re_y8cc.svg" />
         <div class="default-margin-bottom gray-text">
@@ -42,14 +42,25 @@
       <ion-slide class="slides single-slide">
         <img src="assets/desktop-slides/undraw_editable_re_4l94.svg" />
         <div class="default-margin-bottom gray-text">
-          One stop for all your links
+          Customizable Theme with million color of your choice
         </div>
       </ion-slide>
       <ion-slide class="slides single-slide">
         <img
           src="assets/desktop-slides/undraw_mobile_application_re_13u3.svg"
         />
-        <div class="default-margin-bottom gray-text">Made for creators</div>
+        <div class="default-margin-bottom gray-text">
+          Receive anonymous messages from the Audiance
+        </div>
+      </ion-slide>
+
+      <ion-slide class="slides single-slide">
+        <img
+          src="assets/desktop-slides/undraw_predictive_analytics_re_wxt8.svg"
+        />
+        <div class="default-margin-bottom gray-text">
+          Get insights for your content reach 
+        </div>
       </ion-slide>
     </ion-slides>
   </div>
@@ -58,3 +69,5 @@
     [swipeGesture]="gesture"
   ></ion-router-outlet>
 </ion-app>
+
+

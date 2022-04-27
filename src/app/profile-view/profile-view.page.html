@@ -6,7 +6,7 @@
   >
     <div class="share-icon-area">
       <span
-        class="material-icons"
+        class="material-icons pointer"
         [cdkCopyToClipboard]="shareMyLink"
         (click)="linkCopied()"
         [style.color]="theme.textColor"
@@ -15,7 +15,7 @@
       </span>
       <span
         *ngIf="isLoggedIn"
-        class="material-icons settings-icon-area"
+        class="material-icons settings-icon-area pointer"
         (click)="editProfilePopup($event)"
         [style.color]="theme.textColor"
       >
@@ -49,7 +49,7 @@
         <div [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'">
           <span
             *ngFor="let quikLink of quickLinks"
-            class="material-icons social-icon"
+            class="material-icons social-icon pointer"
             (click)="openLink(quikLink.linkUrl)"
             [style.color]="theme.textColor"
           >
@@ -64,7 +64,7 @@
       [ngClass]="editView ? 'edit-icons-style' : 'social-icons-area'"
     >
       <span
-        class="material-icons social-icon"
+        class="material-icons social-icon pointer"
         *ngFor="let quikLink of quickLinks; let i = index"
         (click)="openLink(quikLink.linkUrl,i,'QUICK_LINK')"
         [style.color]="theme.textColor"
