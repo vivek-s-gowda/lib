@@ -14,7 +14,8 @@ import { QuickLinkModalPage } from './quick-link-modal/quick-link-modal.page';
 import { ToastController } from '@ionic/angular';
 import { LocalStorageService } from '../services/localstorage.service';
 import { FontsModalPage } from './fonts-modal/fonts-modal.page';
-import { WaLinkPage } from './wa-link/wa-link.page'
+import { WaLinkPage } from './wa-link/wa-link.page';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-view',
@@ -31,7 +32,8 @@ export class ProfileViewPage implements OnInit {
     public popoverController: PopoverController,
     private valueChangesService: ValueChangesService,
     public toastController: ToastController,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private titleService: Title
   ) {
     this.shareMyLink = window.location.href;
     this.route.queryParams.subscribe((params) => {
@@ -109,6 +111,8 @@ export class ProfileViewPage implements OnInit {
       this.isLoggedIn =
         this.localStorageService.getItem('username') !== null ? true : false;
     }
+    
+    this.titleService.setTitle("Lincit - "+this.userId);
     this.getUser();
     // this.openFontsModal();
   }
@@ -184,7 +188,7 @@ export class ProfileViewPage implements OnInit {
   async addQuickLink() {
     const modal = await this.modalController.create({
       component: QuickLinkModalPage,
-      cssClass: 'newLinkModal',
+      cssClass: 'newQuickLinkModal',
       backdropDismiss: true,
     });
     modal.onDidDismiss().then(async (data: any) => {
