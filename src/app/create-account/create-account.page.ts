@@ -11,6 +11,8 @@ import { LinkService } from '../services/link.service';
 export class CreateAccountPage implements OnInit {
   username: string = '';
   phoneNumber: string = '';
+  countryData: any;
+  code = "+91"
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -25,6 +27,9 @@ export class CreateAccountPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
+    this.linkService.getCountryCodes().subscribe(data =>{
+      this.countryData = data;
+    })
     // this.linkService.subject$.unsubscribe();
   }
 
@@ -37,7 +42,7 @@ export class CreateAccountPage implements OnInit {
           queryParams: {
             from: 'create',
             username: this.username,
-            phoneNumber: this.phoneNumber,
+            phoneNumber: this.code+this.phoneNumber,
           },
         });
       } else {

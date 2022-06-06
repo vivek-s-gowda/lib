@@ -51,7 +51,7 @@ export class OtpPage implements OnInit {
     );
     firebase
       .auth()
-      .signInWithPhoneNumber('+91' + this.phoneNumber, this.reCaptchaVerifier)
+      .signInWithPhoneNumber(this.phoneNumber, this.reCaptchaVerifier)
       .then((data) => {
         this.otpConfirmation = data;
       })

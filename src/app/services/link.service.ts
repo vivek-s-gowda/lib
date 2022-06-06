@@ -8,6 +8,7 @@ import User from '../model/data.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getDatabase, ref, onValue, get, child, set } from 'firebase/database';
 import { Subject } from 'rxjs';
+import { HttpClient } from "@angular/common/http"
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,9 @@ export class LinkService {
   db:any;
   constructor(
     private fireBase: AngularFireDatabase,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private http: HttpClient
+
   ) {
     this.user = fireBase.list(this.dbPath);
     
@@ -73,5 +76,9 @@ export class LinkService {
     this.fireBase.list('/users', ref => ref.orderByChild('phoneNumber').equalTo(value.toString())).snapshotChanges().subscribe((res) => {
      res.length > 0 ? this.numberExists$.next(true) : this.numberExists$.next(false);
     })
+  }
+
+  getCountryCodes() {
+    return this.http.get("https://country-code-api.herokuapp.com/AllCountries");
   }
 }

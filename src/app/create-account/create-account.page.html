@@ -2,7 +2,15 @@
   <div class="layout">
     <div class="create-account-header">Create Account</div>
     <div class="full-width">
-      <ion-input type="number" maxlength="10" class="input-style" placeholder="Phone number" [(ngModel)]="phoneNumber"></ion-input>
+      <div class="flex-parent">
+
+        <select class="input-style country-drop-down" [(ngModel)]="code">
+          <option *ngFor="let codes of countryData" [value]="codes.dial_code">{{codes.dial_code}}</option>
+        </select>
+
+      
+      <ion-input type="number" maxlength="10" class="input-style phone-number" placeholder="Phone number" [(ngModel)]="phoneNumber"></ion-input>
+      </div>
       <button class="btn-style" (click)="checkAndLogin()" [disabled]="phoneNumber == ''">Continue <span class="material-icons">
         arrow_forward
         </span></button>
