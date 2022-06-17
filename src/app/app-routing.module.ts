@@ -64,6 +64,10 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'app/pricing',
+    loadChildren: () => import('./pricing/pricing.module').then( m => m.PricingPageModule)
+  },
 ];
 
 @NgModule({

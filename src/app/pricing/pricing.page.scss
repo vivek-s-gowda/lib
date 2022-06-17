@@ -1,0 +1,17 @@
+.center-head{
+    text-align: center;
+    color: #8e8e8e;
+}
+
+ion-card{
+    cursor: pointer;
+}
+ion-card-header{
+    background-color: var(--primary-color);
+    ion-card-subtitle{
+        color: #fff;
+    }
+    ion-card-title{
+        color: #fff;
+    }
+}

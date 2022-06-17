@@ -18,6 +18,26 @@
       color: #8e8e8e;
       margin-left: 12px;
     }
+    .beta{
+      font-size: medium;
+      color: #8e8e8e;
+    }
+    .pricing{
+      font-size:large;
+      color: #8e8e8e;
+      margin-left: 10vw;
+      cursor: pointer;
+    }
+    .pricing:hover {
+      color: #bd4b4b;
+      transition: 1000ms;
+    }
+    .about{
+      font-size:large;
+      color: #8e8e8e;
+      margin-left: 3vw;
+      cursor: pointer;
+    }
   }
   .desktop-screen {
     width: 358px;
