@@ -10,4 +10,5 @@ export default class User {
   fontFamily?: string;
   messages?: any[];
   colors: any;
+  userType: string;
 }

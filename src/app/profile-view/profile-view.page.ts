@@ -49,7 +49,10 @@ export class ProfileViewPage implements OnInit {
           break;
         }
         case 'GET_MY_QR': {
-          this.showQr();
+          if(this.userType !== "FREE")
+            this.showQr();
+          else
+            this.router.navigate(['app','pricing'])
           break;
         }
         case 'ADD_QUICK_LINK': {
@@ -73,11 +76,17 @@ export class ProfileViewPage implements OnInit {
           break;
         }
         case 'THEME': {
-          this.showTheme();
+          if(this.userType !== "FREE")
+            this.showTheme();
+          else
+            this.router.navigate(['app','pricing'])
           break;
         }
         case 'ADD_WHATSAPP_LINK': {
-          this.addWaQuickLink();
+          if(this.userType !== "FREE")
+            this.addWaQuickLink();
+          else
+            this.router.navigate(['app','pricing'])
           break;
         }
         case 'LOGOUT': {
@@ -106,13 +115,14 @@ export class ProfileViewPage implements OnInit {
   isLoggedIn: boolean = false;
   theme: any;
   deleteLinks: boolean = false;
+  userType: string = "FREE"
   ngOnInit() {
     if (this.localStorageService.getItem('username') == this.userId) {
       this.isLoggedIn =
         this.localStorageService.getItem('username') !== null ? true : false;
     }
     
-    this.titleService.setTitle("Lincit - "+this.userId);
+    this.titleService.setTitle("Lincit (beta) - "+this.userId);
     this.getUser();
     // this.openFontsModal();
   }
@@ -131,6 +141,7 @@ export class ProfileViewPage implements OnInit {
         this.quickLinks = res['quickLink'] != undefined ? res['quickLink'] : [];
         this.dpPath = res['dpPath'];
         this.theme = res['colors'];
+        this.userType = res['userType'];
       } else {
         this.noUserFound = 'usernotfound';
       }

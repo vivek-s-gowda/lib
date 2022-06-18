@@ -73,6 +73,7 @@ export class OtpPage implements OnInit {
             this.addUser.key = Math.random().toString();
             this.addUser.name = this.username;
             this.addUser.dpPath = '';
+            this.addUser.userType = "FREE"
             this.addUser.colors = {
               backgroundColor: '#ffffff',
               linkButtonColor: '#bd4b4b',
