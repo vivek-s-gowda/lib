@@ -6,7 +6,7 @@
 
 
 <ion-content>
-  <ion-card (click)="demoPay('test')">
+  <ion-card (click)="payment('200')">
     <ion-card-header>
       <ion-card-subtitle>Free</ion-card-subtitle>
       <ion-card-title>$ 0 / mo</ion-card-title>
@@ -22,7 +22,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="payment('15000')">
     <ion-card-header>
       <ion-card-subtitle>Silver</ion-card-subtitle>
       <ion-card-title>$ 2 / mo</ion-card-title>
@@ -40,7 +40,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="payment('39000')">
     <ion-card-header>
       <ion-card-subtitle>Gold</ion-card-subtitle>
       <ion-card-title>$ 5 / mo</ion-card-title>
@@ -59,7 +59,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="payment('310000')">
     <ion-card-header>
       <ion-card-subtitle>Platinum</ion-card-subtitle>
       <ion-card-title>$ 40 / lifetime</ion-card-title>

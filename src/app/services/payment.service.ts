@@ -9,6 +9,6 @@ export class PaymentService {
   constructor(private http: HttpClient) {}
 
   createOrder(data) {
-    return this.http.post('http://localhost:8081/order',data);
+    return this.http.post('https://lincit-payment-server.herokuapp.com/order',data);
   }
 }
