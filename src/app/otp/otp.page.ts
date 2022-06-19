@@ -74,6 +74,11 @@ export class OtpPage implements OnInit {
             this.addUser.name = this.username;
             this.addUser.dpPath = '';
             this.addUser.userType = "FREE"
+            this.addUser.createdDate = new Date().toString();
+            let createdDate = new Date();
+            createdDate.setMonth(createdDate.getMonth() + 1);
+            this.addUser.PlanExpiresOn = new Date(createdDate).toString();
+            this.addUser.isBasicUser = true;
             this.addUser.colors = {
               backgroundColor: '#ffffff',
               linkButtonColor: '#bd4b4b',

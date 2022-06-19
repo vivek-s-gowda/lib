@@ -30,8 +30,8 @@
     </svg>
 
     <span class="text">Lincit.one</span> <sup class="beta"> beta</sup>
-    <span class="pricing" [routerLink]="['app','pricing']">Pricing</span>
-    <span class="about">About</span>
+    <span class="pricing" [routerLink]="['app','pricing']" [queryParams]="{ from: 'homepage'}">Pricing</span>
+    <span class="about" [routerLink]="['app','about']">About</span>
   </div>
 
   <div class="banners">

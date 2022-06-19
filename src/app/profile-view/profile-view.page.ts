@@ -52,7 +52,9 @@ export class ProfileViewPage implements OnInit {
           if(this.userType !== "FREE")
             this.showQr();
           else
-            this.router.navigate(['app','pricing'])
+            this.router.navigate(['app','pricing'],{queryParams: {
+              from: 'profile',
+            }})
           break;
         }
         case 'ADD_QUICK_LINK': {
@@ -76,17 +78,21 @@ export class ProfileViewPage implements OnInit {
           break;
         }
         case 'THEME': {
-          if(this.userType !== "FREE")
+          if(this.userType === "GOLD" || this.userType === 'PLATINUM')
             this.showTheme();
           else
-            this.router.navigate(['app','pricing'])
+            this.router.navigate(['app','pricing'],{queryParams: {
+              from: 'profile',
+            }})
           break;
         }
         case 'ADD_WHATSAPP_LINK': {
           if(this.userType !== "FREE")
             this.addWaQuickLink();
           else
-            this.router.navigate(['app','pricing'])
+            this.router.navigate(['app','pricing'],{queryParams: {
+              from: 'profile',
+            }})
           break;
         }
         case 'LOGOUT': {

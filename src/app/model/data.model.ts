@@ -11,4 +11,8 @@ export default class User {
   messages?: any[];
   colors: any;
   userType: string;
+  createdDate: string;
+  PlanExpiresOn?: string;
+  planPerchaseDate?:string;
+  isBasicUser: boolean;
 }

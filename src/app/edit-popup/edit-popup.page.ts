@@ -27,7 +27,9 @@ export class EditPopupPage implements OnInit {
     public modalController: ModalController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("the data in menu",this.data)
+  }
 
   dismiss() {
     this.popoverCtrl.dismiss();

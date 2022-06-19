@@ -19,14 +19,21 @@
     >Add quick links</ion-item
   >
   <ion-item button (click)="setMenuValues('ADD_WHATSAPP_LINK')"
-  >Add Whatsapp direct link <sup><b>Pro</b></sup></ion-item
->
+    >Add Whatsapp direct link
+    <sup
+      *ngIf="data['userType'] === 'FREE'"
+      ><b>Pro</b></sup
+    >
+   </ion-item
+  >
+
+  <!-- && data['userType'] !== 'GOLD' || data['userType'] !== 'SILVER' || data['userType'] !== 'PLATINUM'" -->
   <ion-item button (click)="setMenuValues('GET_MY_QR')"
-    >Get My QR code <sup><b>Pro</b></sup>
+    >Get My QR code <sup *ngIf="data['userType'] === 'FREE'"><b>Pro</b></sup>
   </ion-item>
   <ion-item button (click)="setMenuValues('THEME')"
-  >Customize theme  <sup><b>Pro</b></sup>
-</ion-item>
+    >Customize theme <sup *ngIf="data['userType'] === 'FREE' || data['userType'] === 'SILVER'"><b>Pro</b></sup>
+  </ion-item>
   <!-- <ion-item button (click)="setMenuValues('READ_MESSAGES')"
     >Open Messages
   </ion-item>

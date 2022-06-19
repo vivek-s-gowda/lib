@@ -38,6 +38,10 @@
       margin-left: 3vw;
       cursor: pointer;
     }
+    .about:hover {
+      color: #bd4b4b;
+      transition: 1000ms;
+    }
   }
   .desktop-screen {
     width: 358px;
