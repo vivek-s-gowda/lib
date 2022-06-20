@@ -4,6 +4,7 @@ import User from '../model/data.model';
 import { LinkService } from '../services/link.service';
 import { LocalStorageService } from '../services/localstorage.service';
 import { PaymentService } from '../services/payment.service';
+import { AlertController } from '@ionic/angular';
 declare var Razorpay: any;
 
 @Component({
@@ -21,7 +22,8 @@ export class PricingPage implements OnInit {
     private paymentService: PaymentService,
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService,
-    private linkService: LinkService
+    private linkService: LinkService,
+    public alertController: AlertController
   ) {
     this.route.queryParams.subscribe((params) => {
       this.from = params.from;
@@ -38,9 +40,9 @@ export class PricingPage implements OnInit {
     description: 'Lincit subscription',
     image: 'https://firebasestorage.googleapis.com/v0/b/linkinbio-5e60b.appspot.com/o/public_assets%2Ffavicon2.png?alt=media&token=77d9d823-1fdd-48b2-9945-cdc4e040ced9',
     order_id: 'order_9A33XWu170gUtm', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    handler:  (response) => {
+    handler:  async (response) => {
       this.linkService.getUser(this.username);
-      this.linkService.subject$.subscribe((res: User) => {
+      this.linkService.subject$.subscribe(async (res: User) => {
         console.log(res);
         if (res != null) {
           this.updatedUserData = res; 
@@ -49,7 +51,19 @@ export class PricingPage implements OnInit {
           planExpireDate.setMonth(planExpireDate.getMonth() + 1);
           this.updatedUserData.PlanExpiresOn = new Date(planExpireDate).toString();
           this.updatedUserData['userType'] = this.plan;
-          this.linkService.update(this.username,this.updatedUserData)
+          this.linkService.update(this.username,this.updatedUserData);
+          const alert = await this.alertController.create({
+            cssClass: 'my-custom-class',
+            header: 'Payment success 🤠',
+            subHeader: 'Profile subscribed',
+            message: 'Click Ok to continue to your profile.',
+            buttons: ['OK']
+          });
+      
+          await alert.present();
+      
+          const { role } = await alert.onDidDismiss();
+          this.navigator.navigate(['/'])
         }
       });
     },
@@ -66,7 +80,25 @@ export class PricingPage implements OnInit {
     },
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  // async presentAlert() {
+  //   const alert = await this.alertController.create({
+  //     cssClass: 'my-custom-class',
+  //     header: 'Payment success 🤠',
+  //     subHeader: 'Profile subscribed',
+  //     message: 'Click Ok to continue to your profile.',
+  //     buttons: ['OK']
+  //   });
+
+  //   await alert.present();
+
+  //   const { role } = await alert.onDidDismiss();
+  //   console.log('onDidDismiss resolved with role', role);
+  //   this.navigator.navigate(['/'])
+  // }
+
 
   payment(price: string, plan: string) {
     if (this.from !== 'homepage') {
